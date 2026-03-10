@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paneles Solares Enercom | Instalación de Paneles Solares en México</title>
+    <meta name="description" content="Enercom: Expertos en instalación de paneles solares para hogares y negocios. Ahorra hasta un 98% en tu recibo de CFE. Consulta gratuita.">
+    <meta name="keywords" content="paneles solares, instalación solar, energía solar, CFE, ahorro energético, Enercom, México">
+    <meta name="author" content="Enercom">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Paneles Solares Enercom">
+    <meta property="og:description" content="Transforma tu hogar o negocio en una fuente de energía limpia. Consulta gratuita.">
+    <meta property="og:type" content="website">
+    <!-- TODO: Replace with your actual GitHub Pages URL, e.g. https://<TU-USUARIO>.github.io -->
+    <meta property="og:url" content="https://TU-USUARIO.github.io">
+    <meta property="og:image" content="https://TU-USUARIO.github.io/og-image.jpg">
+
+    <!-- Favicon placeholder -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☀️</text></svg>">
+
+    <!-- ==================== -->
+    <!-- GOOGLE ANALYTICS 4   -->
+    <!-- Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+    <!-- ==================== -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+
+    <!-- ==================== -->
+    <!-- META (FACEBOOK) PIXEL -->
+    <!-- Replace YOUR_PIXEL_ID with your actual Meta Pixel ID -->
+    <!-- ==================== -->
+    <!-- <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript> -->
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50:  '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        },
+                        accent: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                        },
+                        solar: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            50%      { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50%      { transform: translateY(-8px); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        .animate-delay-100 { animation-delay: 0.1s; }
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-300 { animation-delay: 0.3s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+
+        /* WhatsApp Button */
+        .whatsapp-sticky {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Gradient Overlays */
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 40%, #059669 100%);
+        }
+        .section-gradient {
+            background: linear-gradient(180deg, #f8fafc 0%, #eff6ff 100%);
+        }
+
+        /* Nav active state */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background: #f59e0b;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Card hover */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        /* Counter animation */
+        .counter { font-variant-numeric: tabular-nums; }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <!-- ==================== HEADER / NAVBAR ==================== -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#inicio" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-solar-500 rounded-lg flex items-center justify-center group-hover:bg-solar-600 transition-colors">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-white group-hover:text-solar-400 transition-colors">Enercom</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a href="#inicio" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Inicio</a>
+                    <a href="#beneficios" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Beneficios</a>
+                    <a href="#servicios" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Servicios</a>
+                    <a href="#confianza" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Nosotros</a>
+                    <a href="#contacto" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Contacto</a>
+                </nav>
+
+                <!-- CTA + Social -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/ener-com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <!-- CTA Button -->
+                    <a href="#contacto" class="bg-solar-500 hover:bg-solar-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:shadow-lg hover:shadow-solar-500/30">
+                        Consulta Gratuita
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-white p-2" aria-label="Abrir menú">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden hidden bg-primary-900/98 backdrop-blur-lg border-t border-white/10">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#inicio" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Inicio</a>
+                <a href="#beneficios" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Beneficios</a>
+                <a href="#servicios" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Servicios</a>
+                <a href="#confianza" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Nosotros</a>
+                <a href="#contacto" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Contacto</a>
+                <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                    <a href="https://www.facebook.com/ener-com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-white">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="#contacto" class="flex-1 text-center bg-solar-500 hover:bg-solar-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all">
+                        Consulta Gratuita
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section id="inicio" class="hero-gradient relative min-h-screen flex items-center overflow-hidden">
+        <!-- Background pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+        <!-- Floating shapes -->
+        <div class="absolute top-20 right-10 w-72 h-72 bg-solar-500/20 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl animate-float" style="animation-delay: 1.5s;"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-0 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text -->
+                <div class="text-center lg:text-left">
+                    <div class="animate-fade-in-up">
+                        <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-solar-400 text-sm font-semibold px-4 py-1.5 rounded-full border border-white/20 mb-6">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/></svg>
+                            Energía Solar Inteligente
+                        </span>
+                    </div>
+                    <h1 class="animate-fade-in-up animate-delay-100 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                        ¿Cansado de las facturas de electricidad
+                        <span class="text-solar-400"> elevadas?</span>
+                    </h1>
+                    <p class="animate-fade-in-up animate-delay-200 text-lg sm:text-xl text-blue-100/90 mb-8 max-w-xl mx-auto lg:mx-0">
+                        Transforma tu hogar o negocio en una fuente de energía limpia. Reduce hasta un <strong class="text-white">98%</strong> de tu recibo de CFE con paneles solares de última generación.
+                    </p>
+                    <div class="animate-fade-in-up animate-delay-300 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#contacto" class="inline-flex items-center justify-center gap-2 bg-solar-500 hover:bg-solar-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:shadow-solar-500/30 hover:-translate-y-0.5">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                            Consulta Gratuita
+                        </a>
+                        <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:shadow-green-500/30 hover:-translate-y-0.5">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            Cotizar Ahora
+                        </a>
+                    </div>
+                    <!-- Stats -->
+                    <div class="animate-fade-in-up animate-delay-400 grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/10">
+                        <div class="text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-bold text-white counter" data-target="500">0</div>
+                            <div class="text-sm text-blue-200/70 mt-1">Instalaciones</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-bold text-white counter" data-target="98">0</div>
+                            <div class="text-sm text-blue-200/70 mt-1">% Ahorro CFE</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="text-2xl sm:text-3xl font-bold text-white counter" data-target="10">0</div>
+                            <div class="text-sm text-blue-200/70 mt-1">Años Experiencia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual -->
+                <div class="hidden lg:flex items-center justify-center animate-float">
+                    <div class="relative">
+                        <div class="w-80 h-80 bg-gradient-to-br from-solar-400/30 to-accent-500/30 rounded-3xl backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                            <svg class="w-40 h-40 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <!-- Orbiting elements -->
+                        <div class="absolute -top-4 -right-4 bg-solar-500 text-white p-3 rounded-2xl shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 bg-accent-500 text-white p-3 rounded-2xl shadow-lg">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </div>
+    </section>
+
+    <!-- ==================== BENEFITS SECTION ==================== -->
+    <section id="beneficios" class="section-gradient py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-primary-100 text-primary-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                    ¿Por Qué Elegir Energía Solar?
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
+                    Beneficios que <span class="text-primary-600">Transforman</span> tu Economía
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Invertir en paneles solares es la decisión más inteligente para tu bolsillo y el planeta.
+                </p>
+            </div>
+
+            <!-- Benefits Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Benefit 1: Savings -->
+                <div class="reveal bg-white rounded-2xl p-8 shadow-lg shadow-gray-200/50 border border-gray-100 hover:border-primary-200 transition-colors group">
+                    <div class="w-14 h-14 bg-primary-100 group-hover:bg-primary-500 rounded-2xl flex items-center justify-center mb-6 transition-colors">
+                        <svg class="w-7 h-7 text-primary-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Ahorro en Recibo de CFE</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Reduce hasta un <strong class="text-primary-600">98%</strong> tu factura bimestral de CFE. Recupera tu inversión en 3-5 años y disfruta de energía prácticamente gratuita por más de 25 años.
+                    </p>
+                    <div class="mt-6 flex items-center gap-2 text-primary-600 font-semibold text-sm">
+                        <span>Calcula tu ahorro</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                </div>
+
+                <!-- Benefit 2: Smart Monitoring -->
+                <div class="reveal bg-white rounded-2xl p-8 shadow-lg shadow-gray-200/50 border border-gray-100 hover:border-accent-200 transition-colors group">
+                    <div class="w-14 h-14 bg-accent-100 group-hover:bg-accent-500 rounded-2xl flex items-center justify-center mb-6 transition-colors">
+                        <svg class="w-7 h-7 text-accent-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Monitoreo Inteligente</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Controla tu producción de energía en tiempo real desde tu celular con aplicaciones como <strong class="text-accent-600">APsystems</strong>. Monitorea cada panel, detecta fallos y optimiza tu generación 24/7.
+                    </p>
+                    <div class="mt-6 flex items-center gap-2 text-accent-600 font-semibold text-sm">
+                        <span>Tecnología de punta</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                </div>
+
+                <!-- Benefit 3: Eco-Friendly -->
+                <div class="reveal bg-white rounded-2xl p-8 shadow-lg shadow-gray-200/50 border border-gray-100 hover:border-green-200 transition-colors group md:col-span-2 lg:col-span-1">
+                    <div class="w-14 h-14 bg-green-100 group-hover:bg-green-500 rounded-2xl flex items-center justify-center mb-6 transition-colors">
+                        <svg class="w-7 h-7 text-green-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Impacto Ecológico</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Cada instalación solar evita en promedio <strong class="text-green-600">4 toneladas de CO₂</strong> al año. Contribuye activamente a la lucha contra el cambio climático y deja un planeta mejor para las futuras generaciones.
+                    </p>
+                    <div class="mt-6 flex items-center gap-2 text-green-600 font-semibold text-sm">
+                        <span>Energía 100% limpia</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SERVICES SECTION ==================== -->
+    <section id="servicios" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="inline-flex items-center gap-2 bg-solar-500/10 text-solar-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg>
+                    Nuestros Servicios
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
+                    Soluciones Solares <span class="text-solar-500">Integrales</span>
+                </h2>
+                <p class="text-lg text-gray-600">
+                    Desde el diseño hasta el mantenimiento, nos encargamos de todo para que tú solo disfrutes del ahorro.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1: Design -->
+                <div class="service-card reveal bg-gradient-to-br from-primary-50 to-white rounded-2xl p-8 border border-primary-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary-100/50 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary-600/30">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Diseño Personalizado</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Analizamos tu consumo energético, la orientación de tu techo y las condiciones climáticas de tu zona para diseñar el sistema solar perfecto para ti.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-primary-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Análisis de consumo CFE
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-primary-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Estudio de sombras
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-primary-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Propuesta a medida
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 2: Installation -->
+                <div class="service-card reveal bg-gradient-to-br from-accent-50 to-white rounded-2xl p-8 border border-accent-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-accent-100/50 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-accent-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-accent-600/30">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Instalación Profesional</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Nuestro equipo certificado se encarga de toda la instalación, desde el cableado eléctrico hasta la conexión con CFE, con los más altos estándares de calidad y seguridad.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Trámites con CFE incluidos
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Garantía de 25 años
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-accent-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Equipo de primera calidad
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3: Maintenance -->
+                <div class="service-card reveal bg-gradient-to-br from-solar-50 to-white rounded-2xl p-8 border border-solar-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-solar-100/50 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                    <div class="relative">
+                        <div class="w-16 h-16 bg-solar-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-solar-500/30">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Mantenimiento</h3>
+                        <p class="text-gray-600 leading-relaxed mb-6">
+                            Ofrecemos planes de mantenimiento preventivo y correctivo para asegurar que tu sistema opere al máximo rendimiento durante toda su vida útil.
+                        </p>
+                        <ul class="space-y-2">
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-solar-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Limpieza de paneles
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-solar-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Revisión de inversores
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-gray-600">
+                                <svg class="w-5 h-5 text-solar-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Reportes de rendimiento
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA inline -->
+            <div class="text-center mt-12 reveal">
+                <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:shadow-green-500/30 hover:-translate-y-0.5">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Cotizar Ahora por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TRUST / ABOUT SECTION ==================== -->
+    <section id="confianza" class="py-20 lg:py-28 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-solar-500 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent-500 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Text Content -->
+                <div class="reveal">
+                    <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-solar-400 text-sm font-semibold px-4 py-1.5 rounded-full border border-white/20 mb-6">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Confianza y Experiencia
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6">
+                        Instaladores <span class="text-solar-400">Certificados</span> a Tu Servicio
+                    </h2>
+                    <p class="text-lg text-blue-100/80 mb-8 leading-relaxed">
+                        En <strong class="text-white">Enercom</strong> contamos con años de experiencia en el sector de energía solar. Nuestro equipo posee la <strong class="text-solar-400">Certificación CONOCER</strong> en instalación de sistemas fotovoltaicos, garantizando la más alta calidad y seguridad en cada proyecto.
+                    </p>
+
+                    <!-- Trust points -->
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-solar-500/20 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-solar-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Certificación CONOCER EC0586.01</h4>
+                                <p class="text-sm text-blue-200/70">Estándar de competencia en instalación de sistemas fotovoltaicos en residencias.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-solar-500/20 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-solar-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">+10 Años de Experiencia</h4>
+                                <p class="text-sm text-blue-200/70">Más de una década diseñando e instalando sistemas solares en la región.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-solar-500/20 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-solar-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Garantía Total</h4>
+                                <p class="text-sm text-blue-200/70">25 años en paneles, 12 años en inversores, y 5 años en mano de obra.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-solar-500/20 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-5 h-5 text-solar-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Marcas Premium</h4>
+                                <p class="text-sm text-blue-200/70">Trabajamos con los mejores fabricantes: Canadian Solar, Trina Solar, APsystems, Enphase y más.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="reveal grid grid-cols-2 gap-4">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+                        <div class="text-4xl font-extrabold text-solar-400 mb-2 counter" data-target="500">0</div>
+                        <div class="text-sm text-blue-200/70 font-medium">Proyectos<br>Completados</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+                        <div class="text-4xl font-extrabold text-accent-400 mb-2 counter" data-target="98">0</div>
+                        <div class="text-sm text-blue-200/70 font-medium">% Clientes<br>Satisfechos</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+                        <div class="text-4xl font-extrabold text-green-400 mb-2">25</div>
+                        <div class="text-sm text-blue-200/70 font-medium">Años de<br>Garantía</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 text-center">
+                        <div class="text-4xl font-extrabold text-white mb-2">2,000+</div>
+                        <div class="text-sm text-blue-200/70 font-medium">Toneladas CO₂<br>Evitadas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT FORM SECTION ==================== -->
+    <section id="contacto" class="py-20 lg:py-28 section-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <!-- Left: Info -->
+                <div class="reveal">
+                    <span class="inline-flex items-center gap-2 bg-primary-100 text-primary-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+                        Contáctanos
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
+                        Solicita tu <span class="text-primary-600">Consulta Gratuita</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Completa el formulario y un asesor especializado te contactará en menos de 24 horas con una propuesta personalizada, sin compromiso.
+                    </p>
+
+                    <!-- Contact methods -->
+                    <div class="space-y-4 mb-8">
+                        <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow border border-gray-100 group">
+                            <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">WhatsApp</div>
+                                <div class="text-sm text-gray-500">+52 811 954 8637</div>
+                            </div>
+                        </a>
+                        <a href="https://www.facebook.com/ener-com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow border border-gray-100 group">
+                            <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900">Facebook</div>
+                                <div class="text-sm text-gray-500">@ener-com</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Trust badges -->
+                    <div class="flex flex-wrap gap-3">
+                        <span class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                            Sin Compromiso
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+                            Respuesta en 24h
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 bg-solar-100 text-solar-700 text-xs font-semibold px-3 py-1.5 rounded-full">
+                            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            100% Garantizado
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="reveal">
+                    <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Recibe Tu Cotización Gratis</h3>
+
+                        <!-- ==================== -->
+                        <!-- FORMSPREE: Replace YOUR_FORM_ID with your actual Formspree form ID -->
+                        <!-- Get yours at https://formspree.io -->
+                        <!-- ==================== -->
+                        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-5">
+                            <!-- Name -->
+                            <div>
+                                <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-1.5">Nombre Completo <span class="text-red-500">*</span></label>
+                                <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan García López"
+                                       class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                            </div>
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">Correo Electrónico <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="tu@correo.com"
+                                       class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                            </div>
+                            <!-- Phone -->
+                            <div>
+                                <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-1.5">Teléfono <span class="text-red-500">*</span></label>
+                                <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 81 1234 5678"
+                                       class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                            </div>
+                            <!-- CFE Spend -->
+                            <div>
+                                <label for="gasto_cfe" class="block text-sm font-semibold text-gray-700 mb-1.5">Gasto Promedio Bimestral en CFE <span class="text-red-500">*</span></label>
+                                <select id="gasto_cfe" name="gasto_cfe" required
+                                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 bg-white">
+                                    <option value="" disabled selected>Selecciona un rango</option>
+                                    <option value="$500 - $1,000">$500 – $1,000 MXN</option>
+                                    <option value="$1,000 - $2,000">$1,000 – $2,000 MXN</option>
+                                    <option value="$2,000 - $5,000">$2,000 – $5,000 MXN</option>
+                                    <option value="$5,000 - $10,000">$5,000 – $10,000 MXN</option>
+                                    <option value="Más de $10,000">Más de $10,000 MXN</option>
+                                </select>
+                            </div>
+                            <!-- Honeypot (anti-spam) -->
+                            <input type="text" name="_gotcha" style="display:none">
+                            <!-- Submit -->
+                            <button type="submit" id="submit-btn"
+                                    class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 px-6 rounded-xl transition-all hover:shadow-lg hover:shadow-primary-600/30 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                Solicitar Cotización Gratuita
+                            </button>
+                        </form>
+
+                        <!-- Success message (hidden by default) -->
+                        <div id="form-success" class="hidden text-center py-8">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">¡Mensaje Enviado!</h4>
+                            <p class="text-gray-600">Un asesor de Enercom te contactará en menos de 24 horas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 items-center">
+                <!-- Logo -->
+                <div>
+                    <a href="#inicio" class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 bg-solar-500 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold">Enercom</span>
+                    </a>
+                    <p class="text-gray-400 text-sm">Paneles Solares Enercom<br>Energía limpia para tu hogar y negocio.</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="text-center">
+                    <nav class="flex flex-wrap justify-center gap-6 text-sm">
+                        <a href="#inicio" class="text-gray-400 hover:text-white transition-colors">Inicio</a>
+                        <a href="#beneficios" class="text-gray-400 hover:text-white transition-colors">Beneficios</a>
+                        <a href="#servicios" class="text-gray-400 hover:text-white transition-colors">Servicios</a>
+                        <a href="#confianza" class="text-gray-400 hover:text-white transition-colors">Nosotros</a>
+                        <a href="#contacto" class="text-gray-400 hover:text-white transition-colors">Contacto</a>
+                    </nav>
+                </div>
+
+                <!-- Social -->
+                <div class="flex justify-end gap-4">
+                    <a href="https://www.facebook.com/ener-com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 bg-gray-800 hover:bg-green-500 rounded-xl flex items-center justify-center transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Paneles Solares Enercom. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== STICKY WHATSAPP BUTTON ==================== -->
+    <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares."
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Chatea con nosotros en WhatsApp"
+       class="whatsapp-sticky fixed bottom-6 right-6 z-50 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 group">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <!-- Tooltip -->
+        <span class="absolute right-20 bg-gray-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            ¿Necesitas ayuda? 💬
+        </span>
+    </a>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ===================== NAVIGATION =====================
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let menuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.setAttribute('d', menuOpen
+                ? 'M6 18L18 6M6 6l12 12'
+                : 'M4 6h16M4 12h16M4 18h16'
+            );
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuOpen = false;
+                menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+            });
+        });
+
+        // Sticky header background on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-primary-900/95', 'backdrop-blur-lg', 'shadow-lg');
+                header.classList.remove('bg-transparent');
+            } else {
+                header.classList.remove('bg-primary-900/95', 'backdrop-blur-lg', 'shadow-lg');
+                header.classList.add('bg-transparent');
+            }
+        });
+
+        // ===================== SCROLL REVEAL =====================
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                if (rect.top < windowHeight - 100) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // ===================== COUNTER ANIMATION =====================
+        const counters = document.querySelectorAll('.counter[data-target]');
+        let countersAnimated = new Set();
+
+        const animateCounter = (el) => {
+            const target = +el.getAttribute('data-target');
+            const duration = 2000;
+            const start = performance.now();
+
+            const step = (timestamp) => {
+                const progress = Math.min((timestamp - start) / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(target * easeOut);
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                } else {
+                    el.textContent = target;
+                }
+            };
+            requestAnimationFrame(step);
+        };
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated.has(entry.target)) {
+                    countersAnimated.add(entry.target);
+                    animateCounter(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(c => counterObserver.observe(c));
+
+        // ===================== CONTACT FORM =====================
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formSuccess = document.getElementById('form-success');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Enviando...
+            `;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    formSuccess.classList.remove('hidden');
+                    // Optional: track conversion
+                    // gtag('event', 'generate_lead', { event_category: 'Contact' });
+                    // fbq('track', 'Lead');
+                } else {
+                    throw new Error('Error en el servidor');
+                }
+            } catch (error) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    Solicitar Cotización Gratuita
+                `;
+                alert('Hubo un error al enviar el formulario. Por favor intenta de nuevo o contáctanos por WhatsApp.');
+            }
+        });
+
+        // ===================== FOOTER YEAR =====================
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ===================== SMOOTH SCROLL POLYFILL =====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
