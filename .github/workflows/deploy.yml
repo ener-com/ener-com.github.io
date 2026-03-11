@@ -2,10 +2,20 @@
 #  Enercom – GitHub Actions: Build & Deploy to GitHub Pages
 # ============================================================
 #
-# This workflow:
-#   1. Triggers when a PR is merged into gh-pages (or manually)
-#   2. Runs scripts/build.js to inject secrets into index.html
-#   3. Deploys the dist/ folder to GitHub Pages
+# Branching strategy:
+#   main       → development branch (all work happens here)
+#   gh-pages   → production branch (deploy source)
+#
+# Deploy flow:
+#   1. Develop on main
+#   2. Create PR from main → gh-pages
+#   3. Review, merge & close the PR
+#   4. This workflow triggers automatically:
+#      a. Checks out gh-pages
+#      b. Runs scripts/build.js to inject secrets
+#      c. Deploys dist/ to GitHub Pages
+#
+# Also supports manual trigger via workflow_dispatch.
 #
 
 name: Build & Deploy
@@ -37,8 +47,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: 📥 Checkout repository
+      - name: 📥 Checkout gh-pages
         uses: actions/checkout@v4
+        with:
+          ref: gh-pages
 
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
