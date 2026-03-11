@@ -27,7 +27,7 @@
  *   FORMSPREE_ID       – Formspree form ID (just the hash)
  *
  * Optional env vars:
- *   CALCOM_URL         – Cal.com scheduling URL (defaults to https://cal.com)
+ *   CALCOM_USER        – Cal.com username (builds https://cal.com/<username>)
  */
 
 const fs = require('fs');
@@ -69,7 +69,7 @@ const FACEBOOK_HANDLE = assertSafe('FACEBOOK_HANDLE', envOrDie('FACEBOOK_HANDLE'
 const GA_ID           = assertSafe('GA_ID',           envOrDie('GA_ID'));
 const FB_PIXEL_ID     = assertSafe('FB_PIXEL_ID',     envOrDie('FB_PIXEL_ID'));
 const FORMSPREE_ID    = assertSafe('FORMSPREE_ID',    envOrDie('FORMSPREE_ID'));
-const CALCOM_URL      = assertSafe('CALCOM_URL',      process.env.CALCOM_URL || 'https://cal.com');
+const CALCOM_USER     = assertSafe('CALCOM_USER',     process.env.CALCOM_USER || '');
 
 // --------------- Format validation ---------------
 if (!/^\d{10,15}$/.test(PHONE_NUMBER)) {
@@ -94,6 +94,7 @@ console.log('  🔒  All environment variables passed security validation.');
 const WHATSAPP_URL  = `https://wa.me/${PHONE_NUMBER}?text=${WHATSAPP_MSG}`;
 const FACEBOOK_URL  = `https://facebook.com/${FACEBOOK_SLUG}`;
 const FORMSPREE_URL = `https://formspree.io/f/${FORMSPREE_ID}`;
+const CALCOM_URL    = CALCOM_USER ? `https://cal.com/${CALCOM_USER}` : 'https://cal.com';
 const PHONE_INTL    = `+${PHONE_NUMBER}`;
 
 // --------------- Placeholder map ---------------
