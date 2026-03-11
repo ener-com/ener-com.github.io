@@ -965,7 +965,7 @@
                     </button>
 
                     <!-- Scheduling Modal -->
-                    <div id="schedule-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true">
+                    <div id="schedule-modal" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true">
                         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden relative">
                             <div class="flex items-center justify-between bg-brand-600 px-6 py-4 text-white">
                                 <h3 class="text-lg font-bold" data-i18n="schedule_modal_title">Agendar Visita Técnica</h3>
@@ -1722,13 +1722,11 @@
                 modal.classList.remove('pointer-events-none', 'opacity-0');
                 modal.classList.add('pointer-events-auto', 'opacity-100');
                 modal.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
             }
             function closeModal() {
                 modal.classList.remove('pointer-events-auto', 'opacity-100');
                 modal.classList.add('pointer-events-none', 'opacity-0');
                 modal.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
             }
 
             btn.addEventListener('click', openModal);
