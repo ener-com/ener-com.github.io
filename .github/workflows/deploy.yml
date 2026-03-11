@@ -67,6 +67,7 @@ jobs:
           GA_ID:           ${{ secrets.GA_ID }}
           FB_PIXEL_ID:     ${{ secrets.FB_PIXEL_ID }}
           FORMSPREE_ID:    ${{ secrets.FORMSPREE_ID }}
+          CALCOM_USER:     ${{ secrets.CALCOM_USER }}
         run: node scripts/build.js
 
       - name: 📄 Setup Pages
