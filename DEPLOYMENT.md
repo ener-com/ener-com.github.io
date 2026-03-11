@@ -1,6 +1,6 @@
 # 🚀 Guía de Despliegue — Paneles Solares Enercom
 
-## Guía completa para publicar tu sitio web en GitHub Pages (sin costo).
+## Guía completa para publicar tu sitio web en GitHub Pages con protección de datos sensibles.
 
 ---
 
@@ -8,13 +8,43 @@
 
 1. [Requisitos Previos](#1-requisitos-previos)
 2. [Configuración del Repositorio](#2-configuración-del-repositorio)
-3. [Subir tu Código](#3-subir-tu-código)
-4. [Activar GitHub Pages (Deploy from Branch)](#4-activar-github-pages-deploy-from-branch)
-5. [Verificar que tu Sitio Está en Línea](#5-verificar-que-tu-sitio-está-en-línea)
-6. [Configuración de Servicios Externos](#6-configuración-de-servicios-externos)
-7. [Verificación Final](#7-verificación-final)
-8. [Actualizaciones Futuras](#8-actualizaciones-futuras)
-9. [(Opcional) Dominio Personalizado en el Futuro](#9-opcional-dominio-personalizado-en-el-futuro)
+3. [⚠️ Configurar GitHub Secrets (OBLIGATORIO)](#3-️-configurar-github-secrets-obligatorio)
+4. [Subir tu Código](#4-subir-tu-código)
+5. [Activar GitHub Pages (GitHub Actions)](#5-activar-github-pages-github-actions)
+6. [Verificar que tu Sitio Está en Línea](#6-verificar-que-tu-sitio-está-en-línea)
+7. [Desarrollo Local](#7-desarrollo-local)
+8. [Configuración de Servicios Externos](#8-configuración-de-servicios-externos)
+9. [Verificación Final](#9-verificación-final)
+10. [Actualizaciones Futuras](#10-actualizaciones-futuras)
+11. [(Opcional) Dominio Personalizado en el Futuro](#11-opcional-dominio-personalizado-en-el-futuro)
+
+---
+
+## 🔒 Arquitectura de Seguridad
+
+Este proyecto **NO almacena datos sensibles en el código fuente**. En su lugar:
+
+```
+┌─────────────────────────────────────────────────────┐
+│  index.html (source)                                │
+│  Contains __PLACEHOLDERS__ only                     │
+│  ✅ Safe to commit to public repo                   │
+└──────────────────┬──────────────────────────────────┘
+                   │
+                   ▼  GitHub Actions (build step)
+┌─────────────────────────────────────────────────────┐
+│  scripts/build.js                                   │
+│  Reads GitHub Secrets → Replaces __PLACEHOLDERS__   │
+│  Base64-encodes contact data for runtime            │
+└──────────────────┬──────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────────────────────┐
+│  dist/index.html (deployed)                         │
+│  Contains real values (never committed to repo)     │
+│  Contact data obfuscated with Base64                │
+└─────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -58,7 +88,32 @@ enercom-solar.github.io
 
 ---
 
-## 3. Subir tu Código
+## 3. ⚠️ Configurar GitHub Secrets (OBLIGATORIO)
+
+> 🔴 **Este paso es OBLIGATORIO antes del primer despliegue.** Sin estos secrets, el build fallará y el sitio no se publicará.
+
+### Pasos:
+
+1. Ve a tu repositorio en GitHub
+2. Haz clic en **Settings** → **Secrets and variables** → **Actions**
+3. Haz clic en **"New repository secret"** y crea cada uno:
+
+| Secret Name | Valor de Ejemplo | Descripción |
+|---|---|---|
+| `PHONE_NUMBER` | `dddddd` | Teléfono con código de país (solo dígitos) |
+| `PHONE_DISPLAY` | `+dd ddd ddd dddd` | Teléfono para mostrar al usuario |
+| `WHATSAPP_MSG` | `Hola%Mundo%2C%20lorep%20ipsum%20...` | Mensaje pre-llenado (URL-encoded) |
+| `FACEBOOK_SLUG` | `MiPaginaFB` | Nombre de tu página de Facebook |
+| `FACEBOOK_HANDLE` | `@MiPaginaFB` | Handle para mostrar al usuario |
+| `GA_ID` | `G-XXXXXXXXXX` | ID de Google Analytics 4 |
+| `FB_PIXEL_ID` | `123456789012345` | ID del Facebook Pixel |
+| `FORMSPREE_ID` | `xAbCdEfG` | ID del formulario de Formspree |
+
+> 💡 Consulta `.env.example` en el repositorio para ver todos los valores necesarios.
+
+---
+
+## 4. Subir tu Código
 
 Abre **PowerShell** y ejecuta estos comandos uno por uno:
 
@@ -90,34 +145,32 @@ git push -u origin main
 
 ---
 
-## 4. Activar GitHub Pages (Deploy from Branch)
+## 5. Activar GitHub Pages (GitHub Actions)
 
-Como este es un sitio estático (HTML + CSS + JS), **no necesitas GitHub Actions**. Usaremos el método más sencillo: despliegue desde rama.
+Este proyecto usa **GitHub Actions** para construir e inyectar secrets de forma segura antes de desplegar.
 
 ### Pasos:
 
 1. Ve a tu repositorio en GitHub: `https://github.com/<TU-USUARIO>/<TU-USUARIO>.github.io`
-2. Haz clic en la pestaña **Settings** (⚙️) en la barra superior del repositorio
-3. En el menú lateral izquierdo, busca la sección **"Code and automation"** y haz clic en **Pages**
+2. Haz clic en la pestaña **Settings** (⚙️)
+3. En el menú lateral izquierdo, busca **"Code and automation"** → **Pages**
 4. En la sección **"Build and deployment"**:
-   - **Source:** Selecciona **`Deploy from a branch`**
-   - **Branch:** Selecciona **`main`**
-   - **Folder:** Selecciona **`/ (root)`**
+   - **Source:** Selecciona **`GitHub Actions`** ⚠️ (NO "Deploy from a branch")
 5. Haz clic en **Save**
 
-> ⏱️ **Espera 1-3 minutos** para que GitHub construya y publique tu sitio.
+> ⏱️ El workflow `.github/workflows/deploy.yml` se ejecutará automáticamente cada vez que hagas push a `main`.
 
 ---
 
-## 5. Verificar que tu Sitio Está en Línea
+## 6. Verificar que tu Sitio Está en Línea
 
-### 5.1 — Verificar el workflow de construcción
+### 6.1 — Verificar el workflow de construcción
 
 1. Ve a la pestaña **Actions** de tu repositorio
-2. Deberías ver un workflow llamado **"pages build and deployment"** ejecutándose
+2. Deberías ver un workflow llamado **"Build & Deploy"** ejecutándose
 3. Cuando muestre un ✅ (check verde), tu sitio está en línea
 
-### 5.2 — Visitar tu sitio
+### 6.2 — Visitar tu sitio
 
 Abre tu navegador y ve a:
 
@@ -138,7 +191,29 @@ https://<TU-USUARIO>.github.io
 
 ---
 
-## 6. Configuración de Servicios Externos
+## 7. Desarrollo Local
+
+Para probar el sitio localmente con tus datos reales:
+
+```powershell
+# 1. Copia el archivo de ejemplo
+cp .env.example .env
+
+# 2. Edita .env con tus valores reales
+notepad .env
+
+# 3. Ejecuta el build local
+node scripts/build-local.js
+
+# 4. Abre dist/index.html en tu navegador
+start dist/index.html
+```
+
+> ⚠️ **NUNCA** hagas commit del archivo `.env`. Ya está en `.gitignore`.
+
+---
+
+## 8. Configuración de Servicios Externos
 
 ### 6.1 — Formspree (Formulario de Contacto)
 
