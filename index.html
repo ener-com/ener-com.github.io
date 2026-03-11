@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://ener-com.github.io">
 
     <!-- ==================== SECURITY HEADERS ==================== -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://formspree.io https://analytics.google.com https://region1.google-analytics.com; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://formspree.io https://analytics.google.com https://region1.google-analytics.com; frame-src https://cal.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
@@ -36,6 +36,7 @@
 
     <!-- Favicon -->
     <link rel="icon" href="logo/logo.jpeg" type="image/jpeg">
+    <link rel="manifest" href="manifest.json">
 
     <!-- ==================== STRUCTURED DATA (JSON-LD) ==================== -->
     <script type="application/ld+json">
@@ -250,6 +251,40 @@
             }
             @keyframes pulse-hint { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
         }
+
+        /* Savings calculator */
+        .calc-input:focus { box-shadow: 0 0 0 3px rgba(47,142,116,0.3); }
+        .calc-result-card { transition: all 0.5s cubic-bezier(0.4,0,0.2,1); }
+        .calc-result-card.show { opacity: 1; transform: translateY(0); }
+        .calc-result-card.hide { opacity: 0; transform: translateY(20px); }
+        .cfe-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; outline: none; transition: opacity 0.2s; }
+        .cfe-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; border-radius: 50%; background: #23725d; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); border: 3px solid white; }
+        .cfe-slider::-moz-range-thumb { width: 28px; height: 28px; border-radius: 50%; background: #23725d; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); border: 3px solid white; }
+
+        /* Before/After CFE */
+        .ba-container { position: relative; overflow: hidden; border-radius: 1rem; }
+        .ba-after { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); transition: clip-path 0.1s; }
+        .ba-handle { position: absolute; top: 0; bottom: 0; width: 4px; background: white; cursor: ew-resize; z-index: 10; box-shadow: 0 0 10px rgba(0,0,0,0.3); }
+        .ba-handle::after { content: '⟷'; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: white; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.25); }
+
+        /* WhatsApp chat widget */
+        .wa-chat { max-height: 0; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease; overflow: hidden; }
+        .wa-chat.open { max-height: 400px; opacity: 1; }
+        .wa-quick-btn { transition: all 0.2s ease; }
+        .wa-quick-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+
+        /* Language toggle */
+        .lang-toggle { transition: all 0.3s ease; }
+        .lang-toggle:hover { transform: scale(1.05); }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+            .reveal { opacity: 1; transform: none; }
+            .animate-fade-in-up { opacity: 1; animation: none; }
+            .animate-float { animation: none; }
+            .whatsapp-sticky { animation: none; }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800 antialiased">
@@ -271,6 +306,7 @@
                 <nav class="hidden lg:flex items-center gap-7" role="navigation" aria-label="Navegación principal">
                     <a href="#inicio" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Inicio</a>
                     <a href="#beneficios" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Beneficios</a>
+                    <a href="#calculadora" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Calculadora</a>
                     <a href="#servicios" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Servicios</a>
                     <a href="#proyectos" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Proyectos</a>
                     <a href="#monitoreo" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Monitoreo</a>
@@ -280,6 +316,10 @@
 
                 <!-- CTA + Social -->
                 <div class="hidden lg:flex items-center gap-4">
+                    <button id="lang-toggle" class="lang-toggle flex items-center gap-1 text-white/80 hover:text-white text-sm font-medium px-2.5 py-1 rounded-full border border-white/20 hover:border-white/40 transition-all" aria-label="Switch language">
+                        <span id="lang-flag">🇲🇽</span>
+                        <span id="lang-label">ES</span>
+                    </button>
                     <a href="__FACEBOOK_URL__" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
@@ -302,12 +342,17 @@
             <div class="px-4 py-6 space-y-4">
                 <a href="#inicio" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Inicio</a>
                 <a href="#beneficios" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Beneficios</a>
+                <a href="#calculadora" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Calculadora</a>
                 <a href="#servicios" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Servicios</a>
                 <a href="#proyectos" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Proyectos</a>
                 <a href="#monitoreo" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Monitoreo</a>
                 <a href="#confianza" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Nosotros</a>
                 <a href="#contacto" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Contacto</a>
                 <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+                    <button id="lang-toggle-mobile" class="lang-toggle flex items-center gap-1 text-white/80 hover:text-white text-sm font-medium px-3 py-1.5 rounded-full border border-white/20" aria-label="Switch language">
+                        <span class="lang-flag-m">🇲🇽</span>
+                        <span class="lang-label-m">ES</span>
+                    </button>
                     <a href="__FACEBOOK_URL__" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-white">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
@@ -427,6 +472,111 @@
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Impacto Ecológico</h3>
                     <p class="text-gray-600 leading-relaxed">Cada instalación solar evita en promedio <strong class="text-green-600">4 toneladas de CO₂</strong> al año. Contribuye activamente a la lucha contra el cambio climático.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SAVINGS CALCULATOR + BEFORE/AFTER CFE ==================== -->
+    <section id="calculadora" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+                <span class="inline-flex items-center gap-2 bg-solar-500/10 text-solar-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 0a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 1a1 1 0 10-2 0v2a1 1 0 102 0v-2z"/></svg>
+                    <span data-i18n="calc_badge">Calculadora de Ahorro</span>
+                </span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4">
+                    <span data-i18n="calc_title_1">¿Cuánto Puedes </span><span class="text-brand-600" data-i18n="calc_title_2">Ahorrar?</span>
+                </h2>
+                <p class="text-lg text-gray-600" data-i18n="calc_desc">Ingresa tu gasto bimestral de CFE y descubre tu potencial de ahorro con paneles solares.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <!-- Calculator Input -->
+                <div class="reveal">
+                    <div class="bg-gradient-to-br from-brand-50 to-solar-50 rounded-2xl p-8 border border-brand-100 shadow-lg">
+                        <label for="calc-cfe" class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="calc_label">Tu Gasto Bimestral de CFE (MXN)</label>
+                        <div class="relative mb-4">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-bold text-brand-600">$</span>
+                            <input type="text" id="calc-cfe" inputmode="numeric" placeholder="2,000" class="calc-input w-full pl-10 pr-4 py-4 text-3xl font-bold text-gray-900 bg-white rounded-xl border-2 border-brand-200 focus:border-brand-500 focus:outline-none transition-colors text-center" autocomplete="off">
+                        </div>
+                        <input type="range" id="calc-slider" min="500" max="15000" step="100" value="2000" class="cfe-slider mb-6" style="background: linear-gradient(to right, #d5ede5 0%, #23725d 50%, #f59e0b 100%);">
+                        <div class="flex justify-between text-xs text-gray-500 -mt-4 mb-6">
+                            <span>$500</span>
+                            <span>$5,000</span>
+                            <span>$10,000</span>
+                            <span>$15,000</span>
+                        </div>
+
+                        <!-- Results -->
+                        <div id="calc-results" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="calc-result-card hide bg-white rounded-xl p-4 border border-brand-100 text-center">
+                                    <div class="text-xs text-gray-500 mb-1" data-i18n="calc_monthly_saving">Ahorro Mensual</div>
+                                    <div id="calc-saving" class="text-2xl font-extrabold text-brand-600">$0</div>
+                                </div>
+                                <div class="calc-result-card hide bg-white rounded-xl p-4 border border-solar-100 text-center">
+                                    <div class="text-xs text-gray-500 mb-1" data-i18n="calc_annual_saving">Ahorro Anual</div>
+                                    <div id="calc-annual" class="text-2xl font-extrabold text-solar-600">$0</div>
+                                </div>
+                                <div class="calc-result-card hide bg-white rounded-xl p-4 border border-green-100 text-center">
+                                    <div class="text-xs text-gray-500 mb-1" data-i18n="calc_roi">Retorno de Inversión</div>
+                                    <div id="calc-roi" class="text-2xl font-extrabold text-green-600">0 <span class="text-sm font-normal" data-i18n="calc_years">años</span></div>
+                                </div>
+                                <div class="calc-result-card hide bg-white rounded-xl p-4 border border-gray-200 text-center">
+                                    <div class="text-xs text-gray-500 mb-1" data-i18n="calc_panels">Paneles Estimados</div>
+                                    <div id="calc-panels" class="text-2xl font-extrabold text-navy-800">0</div>
+                                </div>
+                            </div>
+                            <div class="calc-result-card hide bg-brand-600 rounded-xl p-4 text-center text-white">
+                                <div class="text-sm font-medium mb-1" data-i18n="calc_25y_title">Ahorro Estimado en 25 Años</div>
+                                <div id="calc-lifetime" class="text-3xl font-extrabold">$0</div>
+                            </div>
+                            <div class="calc-result-card hide text-center mt-4">
+                                <a href="#contacto" class="inline-flex items-center gap-2 bg-solar-500 hover:bg-solar-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:shadow-solar-500/30 hover:-translate-y-0.5">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                    <span data-i18n="calc_cta">Quiero Mi Cotización</span>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 text-center" data-i18n="calc_disclaimer">* Estimado basado en promedios de la zona centro de México. Los valores reales pueden variar según ubicación y consumo.</p>
+                    </div>
+                </div>
+
+                <!-- Before/After CFE Bill -->
+                <div class="reveal">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 text-center" data-i18n="ba_title">Tu Recibo de CFE: Antes vs Después</h3>
+                    <div class="ba-container rounded-2xl shadow-xl border border-gray-200 bg-gray-100" style="aspect-ratio: 4/3;">
+                        <!-- BEFORE (background) -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center p-8 bg-gradient-to-br from-red-50 to-red-100">
+                            <div class="text-center">
+                                <div class="text-xs font-semibold text-red-400 uppercase tracking-wider mb-2" data-i18n="ba_before">ANTES</div>
+                                <svg class="w-12 h-12 text-red-400 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2zM10 8.5a.5.5 0 11-1 0 .5.5 0 011 0zm5 5a.5.5 0 11-1 0 .5.5 0 011 0z"/></svg>
+                                <div class="text-5xl sm:text-6xl font-extrabold text-red-500 mb-1" id="ba-before-amount">$2,000</div>
+                                <div class="text-sm text-red-400" data-i18n="ba_bimonthly">bimestral</div>
+                                <div class="mt-4 inline-flex items-center gap-1 bg-red-200/60 text-red-600 text-xs font-semibold px-3 py-1 rounded-full">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"/></svg>
+                                    <span data-i18n="ba_increasing">Tarifa incrementando</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- AFTER (overlay with clip) -->
+                        <div id="ba-after" class="ba-after flex flex-col items-center justify-center p-8 bg-gradient-to-br from-green-50 to-brand-50">
+                            <div class="text-center">
+                                <div class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-2" data-i18n="ba_after">DESPUÉS</div>
+                                <svg class="w-12 h-12 text-brand-500 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                                <div class="text-5xl sm:text-6xl font-extrabold text-brand-600 mb-1" id="ba-after-amount">$40</div>
+                                <div class="text-sm text-brand-500" data-i18n="ba_bimonthly">bimestral</div>
+                                <div class="mt-4 inline-flex items-center gap-1 bg-green-200/60 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                    <span data-i18n="ba_savings">98% ahorro con solar</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Drag handle -->
+                        <div id="ba-handle" class="ba-handle" style="left: 50%;"></div>
+                    </div>
+                    <p class="text-center text-xs text-gray-400 mt-3" data-i18n="ba_drag_hint">← Arrastra para comparar →</p>
                 </div>
             </div>
         </div>
@@ -798,6 +948,34 @@
                         </a>
                     </div>
 
+                    <!-- Schedule a Visit -->
+                    <button id="schedule-btn" class="w-full flex items-center gap-4 bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow border border-gray-100 group cursor-pointer text-left mb-8">
+                        <div class="w-12 h-12 bg-brand-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-gray-900" data-i18n="schedule_title">Agendar Visita Técnica</div>
+                            <div class="text-sm text-gray-500" data-i18n="schedule_subtitle">Elige fecha y hora que te convengan</div>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400 ml-auto group-hover:text-brand-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </button>
+
+                    <!-- Scheduling Modal -->
+                    <div id="schedule-modal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true">
+                        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden relative">
+                            <div class="flex items-center justify-between bg-brand-600 px-6 py-4 text-white">
+                                <h3 class="text-lg font-bold" data-i18n="schedule_modal_title">Agendar Visita Técnica</h3>
+                                <button id="schedule-close" class="text-white/80 hover:text-white transition-colors" aria-label="Cerrar">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                </button>
+                            </div>
+                            <div class="p-6">
+                                <iframe id="calcom-iframe" data-src="__CALCOM_URL__" class="w-full rounded-lg border-0" style="height:500px;" title="Agendar cita" loading="lazy" allow="payment"></iframe>
+                                <noscript><p class="text-center text-gray-600 py-8">Para agendar tu visita, activa JavaScript o contáctanos por WhatsApp.</p></noscript>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="flex flex-wrap gap-3">
                         <span class="inline-flex items-center gap-1.5 bg-green-100 text-green-700 text-xs font-semibold px-3 py-1.5 rounded-full">
                             <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>Sin Compromiso
@@ -916,11 +1094,46 @@
         </div>
     </footer>
 
-    <!-- ==================== STICKY WHATSAPP ==================== -->
-    <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="whatsapp-sticky fixed bottom-6 right-6 z-50 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 group">
-        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span class="absolute right-20 bg-navy-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">¿Necesitas ayuda? 💬</span>
-    </a>
+    <!-- ==================== WHATSAPP CHAT WIDGET ==================== -->
+    <div id="wa-widget" class="fixed bottom-6 right-6 z-50">
+        <!-- Chat popup -->
+        <div id="wa-chat" class="wa-chat mb-4 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+            <div class="bg-green-500 px-5 py-4 flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </div>
+                <div class="flex-1">
+                    <div class="text-white font-semibold text-sm">Enercom</div>
+                    <div class="text-green-100 text-xs" data-i18n="wa_status">Normalmente responde en minutos</div>
+                </div>
+                <button id="wa-close" class="text-white/80 hover:text-white transition-colors" aria-label="Cerrar chat">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+            <div class="p-4 bg-[#e5ddd5]">
+                <div class="bg-white rounded-lg p-3 shadow-sm max-w-[85%] mb-3">
+                    <p class="text-sm text-gray-800" data-i18n="wa_greeting">👋 ¡Hola! ¿En qué podemos ayudarte? Elige una opción o escríbenos directamente.</p>
+                    <span class="text-[10px] text-gray-400 mt-1 block text-right">Enercom</span>
+                </div>
+            </div>
+            <div class="p-3 space-y-2 bg-white border-t border-gray-100">
+                <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" class="wa-quick-btn block w-full text-left px-4 py-2.5 bg-green-50 hover:bg-green-100 border border-green-200 rounded-xl text-sm font-medium text-green-800 transition-colors">
+                    💰 <span data-i18n="wa_opt_1">Quiero una cotización</span>
+                </a>
+                <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" class="wa-quick-btn block w-full text-left px-4 py-2.5 bg-green-50 hover:bg-green-100 border border-green-200 rounded-xl text-sm font-medium text-green-800 transition-colors">
+                    🔧 <span data-i18n="wa_opt_2">Necesito mantenimiento</span>
+                </a>
+                <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" class="wa-quick-btn block w-full text-left px-4 py-2.5 bg-green-50 hover:bg-green-100 border border-green-200 rounded-xl text-sm font-medium text-green-800 transition-colors">
+                    ❓ <span data-i18n="wa_opt_3">Tengo una pregunta</span>
+                </a>
+            </div>
+        </div>
+        <!-- Toggle button -->
+        <button id="wa-toggle" class="whatsapp-sticky w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 ml-auto" aria-label="WhatsApp">
+            <svg id="wa-icon-chat" class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <svg id="wa-icon-close" class="w-7 h-7 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+    </div>
 
     <!-- ==================== LIGHTBOX MODAL ==================== -->
     <div id="lightbox" class="lightbox">
@@ -1343,6 +1556,281 @@
                 alert('Error al enviar. Intenta de nuevo o contáctanos por WhatsApp.');
             }
         });
+
+        // ===== SAVINGS CALCULATOR =====
+        (function () {
+            const slider = document.getElementById('calc-bill');
+            const input = document.getElementById('calc-bill-input');
+            const resultSection = document.getElementById('calc-results');
+            if (!slider || !input) return;
+
+            // Constants for Mexican solar
+            const COST_PER_KW = 18000;       // MXN per kW installed
+            const PEAK_SUN_HOURS = 4.5;      // avg Mexico
+            const PANEL_WATTS = 335;
+            const REDUCTION = 0.98;           // CFE bill reduction
+            const KWH_PRICE = 4.2;           // avg MXN per kWh (DAC tariff)
+            const SYSTEM_LIFE = 25;
+            const ANNUAL_INCREASE = 0.05;     // CFE annual rate increase
+
+            function formatMoney(n) {
+                return '$' + Math.round(n).toLocaleString('es-MX');
+            }
+
+            function calculate(bill) {
+                const monthlyKwh = bill / KWH_PRICE;
+                const dailyKwh = monthlyKwh / 30;
+                const systemKw = dailyKwh / PEAK_SUN_HOURS;
+                const numPanels = Math.ceil((systemKw * 1000) / PANEL_WATTS);
+                const investment = Math.round(systemKw * COST_PER_KW);
+                const monthlySaving = Math.round(bill * REDUCTION);
+                const annualSaving = monthlySaving * 12;
+                const paybackYears = +(investment / annualSaving).toFixed(1);
+
+                // Lifetime savings with CFE rate increases
+                let lifetimeSaving = 0;
+                for (let y = 0; y < SYSTEM_LIFE; y++) {
+                    lifetimeSaving += annualSaving * Math.pow(1 + ANNUAL_INCREASE, y);
+                }
+
+                return { monthlySaving, investment, paybackYears, numPanels, lifetimeSaving: Math.round(lifetimeSaving), systemKw: systemKw.toFixed(1) };
+            }
+
+            function updateResults() {
+                const bill = parseInt(slider.value);
+                input.value = bill;
+                slider.value = bill;
+
+                const r = calculate(bill);
+                const el = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+                el('result-saving', formatMoney(r.monthlySaving));
+                el('result-investment', formatMoney(r.investment));
+                el('result-payback', r.paybackYears + ' años');
+                el('result-panels', r.numPanels);
+                el('result-lifetime', formatMoney(r.lifetimeSaving));
+                el('result-system', r.systemKw + ' kW');
+
+                resultSection?.classList.remove('hidden');
+                resultSection?.querySelectorAll('.calc-result-card').forEach((c, i) => {
+                    c.style.animation = 'none';
+                    c.offsetHeight; // reflow
+                    c.style.animation = `fadeInUp 0.4s ease ${i * 0.08}s both`;
+                });
+            }
+
+            slider.addEventListener('input', updateResults);
+            input.addEventListener('change', function () {
+                let v = parseInt(this.value) || 500;
+                v = Math.max(500, Math.min(50000, v));
+                slider.value = v;
+                this.value = v;
+                updateResults();
+            });
+
+            document.getElementById('calc-btn')?.addEventListener('click', updateResults);
+        })();
+
+        // ===== BEFORE / AFTER CFE SLIDER =====
+        (function () {
+            const container = document.querySelector('.ba-container');
+            if (!container) return;
+            const handle = container.querySelector('.ba-handle');
+            const after = container.querySelector('.ba-after');
+            let dragging = false;
+
+            function move(x) {
+                const rect = container.getBoundingClientRect();
+                let pct = ((x - rect.left) / rect.width) * 100;
+                pct = Math.max(2, Math.min(98, pct));
+                after.style.clipPath = `inset(0 0 0 ${pct}%)`;
+                handle.style.left = pct + '%';
+            }
+
+            handle.addEventListener('mousedown', () => dragging = true);
+            handle.addEventListener('touchstart', () => dragging = true, { passive: true });
+            document.addEventListener('mouseup', () => dragging = false);
+            document.addEventListener('touchend', () => dragging = false);
+            document.addEventListener('mousemove', e => dragging && move(e.clientX));
+            document.addEventListener('touchmove', e => dragging && move(e.touches[0].clientX), { passive: true });
+            container.addEventListener('click', e => move(e.clientX));
+        })();
+
+        // ===== WHATSAPP CHAT WIDGET =====
+        (function () {
+            const toggle = document.getElementById('wa-toggle');
+            const chat = document.getElementById('wa-chat');
+            const closeBtn = document.getElementById('wa-close');
+            const iconChat = document.getElementById('wa-icon-chat');
+            const iconClose = document.getElementById('wa-icon-close');
+            if (!toggle || !chat) return;
+
+            function openChat() {
+                chat.style.display = 'block';
+                requestAnimationFrame(() => chat.classList.add('open'));
+                iconChat.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            }
+            function closeChat() {
+                chat.classList.remove('open');
+                setTimeout(() => chat.style.display = 'none', 300);
+                iconChat.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+
+            chat.style.display = 'none';
+            toggle.addEventListener('click', () => chat.style.display === 'none' ? openChat() : closeChat());
+            closeBtn?.addEventListener('click', closeChat);
+
+            // Auto-open after 30s on desktop
+            if (window.innerWidth >= 768) {
+                setTimeout(() => { if (chat.style.display === 'none') openChat(); }, 30000);
+            }
+        })();
+
+        // ===== SCHEDULING MODAL =====
+        (function () {
+            const btn = document.getElementById('schedule-btn');
+            const modal = document.getElementById('schedule-modal');
+            const closeBtn = document.getElementById('schedule-close');
+            const iframe = document.getElementById('calcom-iframe');
+            if (!btn || !modal) return;
+
+            function openModal() {
+                // Lazy-load iframe
+                if (iframe && !iframe.src && iframe.dataset.src) {
+                    iframe.src = iframe.dataset.src;
+                }
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                modal.classList.add('pointer-events-auto', 'opacity-100');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeModal() {
+                modal.classList.remove('pointer-events-auto', 'opacity-100');
+                modal.classList.add('pointer-events-none', 'opacity-0');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            btn.addEventListener('click', openModal);
+            closeBtn?.addEventListener('click', closeModal);
+            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.classList.contains('opacity-0')) closeModal(); });
+        })();
+
+        // ===== LANGUAGE TOGGLE (i18n) =====
+        (function () {
+            const translations = {
+                en: {
+                    // Nav
+                    "Inicio": "Home", "Beneficios": "Benefits", "Calculadora": "Calculator",
+                    "Servicios": "Services", "Proyectos": "Projects", "Monitoreo": "Monitoring",
+                    "Nosotros": "About Us", "Contacto": "Contact", "Consulta Gratuita": "Free Quote",
+                    // Hero
+                    hero_title: "Save up to <span class='text-solar-400'>98%</span> on your electricity bill",
+                    hero_subtitle: "We install premium solar panels with guaranteed performance. Join hundreds of happy customers in Tamaulipas.",
+                    hero_cta: "Get Free Quote", hero_cta2: "View Projects",
+                    // Calculator
+                    calc_title: "How Much Can You <span class='text-brand-600'>Save</span>?",
+                    calc_subtitle: "Enter your current bimonthly CFE bill and discover the potential of solar energy for your home or business.",
+                    calc_label: "Your current CFE bill (bimonthly)", calc_btn: "Calculate My Savings",
+                    calc_tab_calc: "💡 Calculator", calc_tab_ba: "📊 Before vs After",
+                    result_saving_label: "Monthly Savings", result_investment_label: "Approx. Investment",
+                    result_payback_label: "Payback Period", result_panels_label: "Solar Panels",
+                    result_lifetime_label: "25-year Savings", result_system_label: "System Size",
+                    calc_disclaimer: "* Estimates based on national averages. Actual results may vary. Request your personalized quote.",
+                    ba_title: "Your CFE Bill: Before vs After",
+                    ba_before: "Without Solar", ba_after_label: "With Enercom",
+                    ba_before_price: "$4,200 bimonthly", ba_after_price: "$84 bimonthly",
+                    ba_badge_before: "DAC Tariff", ba_badge_after: "Basic Tariff",
+                    // WhatsApp
+                    wa_status: "Usually replies in minutes",
+                    wa_greeting: "👋 Hi! How can we help you? Choose an option or write to us directly.",
+                    wa_opt_1: "I want a quote", wa_opt_2: "I need maintenance", wa_opt_3: "I have a question",
+                    // Schedule
+                    schedule_title: "Schedule a Technical Visit",
+                    schedule_subtitle: "Choose a date and time that works for you",
+                    schedule_modal_title: "Schedule Technical Visit",
+                    // Contact
+                    contact_tag: "Contact Us",
+                    contact_title: "Request Your <span class='text-brand-600'>Free Consultation</span>",
+                    contact_desc: "Fill out the form and an advisor will contact you within 24 hours with a personalized proposal.",
+                    form_title: "Get Your Free Quote",
+                    form_name: "Full Name", form_phone: "Phone / WhatsApp",
+                    form_email: "Email", form_bill: "Current CFE bill (bimonthly)",
+                    form_interest: "Interest", form_interest_opt1: "Residential",
+                    form_interest_opt2: "Commercial", form_interest_opt3: "Industrial", form_interest_opt4: "Other",
+                    form_message: "Additional Message (optional)",
+                    form_privacy: "I accept the <button type='button' class='text-brand-600 underline hover:text-brand-700' onclick=\"document.getElementById('privacy-modal').classList.remove('hidden')\">privacy policy</button>",
+                    form_submit: "Request Free Quote",
+                    form_success_title: "Sent Successfully! ✅",
+                    form_success_msg: "An Enercom advisor will contact you within 24 hours.",
+                    badge_1: "No Commitment", badge_2: "24h Response", badge_3: "100% Guaranteed",
+                    // Footer
+                    footer_desc: "Your solar energy partner in Tamaulipas. Premium panel installation with performance guarantee.",
+                    footer_links: "Quick Links", footer_contact: "Contact",
+                    // Cookie
+                    cookie_text: "We use cookies to improve your experience.",
+                    cookie_btn: "Accept"
+                }
+            };
+
+            let currentLang = localStorage.getItem('enercom_lang') || 'es';
+
+            function applyLang(lang) {
+                currentLang = lang;
+                localStorage.setItem('enercom_lang', lang);
+                document.documentElement.lang = lang;
+
+                // Update toggle buttons
+                const flag = lang === 'en' ? '🇺🇸' : '🇲🇽';
+                const label = lang.toUpperCase();
+                document.querySelectorAll('#lang-flag, .lang-flag-m').forEach(el => el.textContent = flag);
+                document.querySelectorAll('#lang-label, .lang-label-m').forEach(el => el.textContent = label);
+
+                if (lang === 'es') {
+                    // Reset to original Spanish (reload simpler approach)
+                    document.querySelectorAll('[data-i18n]').forEach(el => {
+                        if (el.dataset.original) el.innerHTML = el.dataset.original;
+                    });
+                    // Reset nav links
+                    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(el => {
+                        if (el.dataset.original) el.textContent = el.dataset.original;
+                    });
+                    return;
+                }
+
+                const t = translations[lang];
+                if (!t) return;
+
+                // Translate data-i18n elements
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (t[key]) {
+                        if (!el.dataset.original) el.dataset.original = el.innerHTML;
+                        el.innerHTML = t[key];
+                    }
+                });
+
+                // Translate nav links
+                document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(el => {
+                    const text = el.textContent.trim();
+                    if (!el.dataset.original) el.dataset.original = text;
+                    const orig = el.dataset.original;
+                    if (t[orig]) el.textContent = t[orig];
+                });
+            }
+
+            // Bind toggles
+            document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyLang(currentLang === 'es' ? 'en' : 'es');
+                });
+            });
+
+            // Restore saved language
+            if (currentLang !== 'es') applyLang(currentLang);
+        })();
 
         // ===== FOOTER YEAR =====
         document.getElementById('year').textContent = new Date().getFullYear();
