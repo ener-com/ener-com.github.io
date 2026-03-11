@@ -1,0 +1,29 @@
+# ============================================================
+#  Enercom – Git Ignore
+# ============================================================
+
+# Environment variables (contains secrets!)
+.env
+.env.local
+.env.production
+
+# Build output (generated with real values)
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# Node
+node_modules/
+package-lock.json
+
+# Logs
+*.log
