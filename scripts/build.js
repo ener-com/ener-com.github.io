@@ -44,15 +44,47 @@ function b64(str) {
     return Buffer.from(str, 'utf-8').toString('base64');
 }
 
+/**
+ * Validate that a value does not contain HTML/script injection payloads.
+ * This prevents build-time injection if a secret is compromised.
+ */
+function assertSafe(name, value) {
+    const dangerous = /<script|<\/script|javascript:|on\w+\s*=|<iframe|<object|<embed|<svg\s+on/i;
+    if (dangerous.test(value)) {
+        console.error(`❌  SECURITY: Env var ${name} contains potentially dangerous content. Aborting build.`);
+        process.exit(1);
+    }
+    return value;
+}
+
 // --------------- Read env vars ---------------
-const PHONE_NUMBER    = envOrDie('PHONE_NUMBER');
-const PHONE_DISPLAY   = envOrDie('PHONE_DISPLAY');
-const WHATSAPP_MSG    = envOrDie('WHATSAPP_MSG');
-const FACEBOOK_SLUG   = envOrDie('FACEBOOK_SLUG');
-const FACEBOOK_HANDLE = envOrDie('FACEBOOK_HANDLE');
-const GA_ID           = envOrDie('GA_ID');
-const FB_PIXEL_ID     = envOrDie('FB_PIXEL_ID');
-const FORMSPREE_ID    = envOrDie('FORMSPREE_ID');
+const PHONE_NUMBER    = assertSafe('PHONE_NUMBER',    envOrDie('PHONE_NUMBER'));
+const PHONE_DISPLAY   = assertSafe('PHONE_DISPLAY',   envOrDie('PHONE_DISPLAY'));
+const WHATSAPP_MSG    = assertSafe('WHATSAPP_MSG',    envOrDie('WHATSAPP_MSG'));
+const FACEBOOK_SLUG   = assertSafe('FACEBOOK_SLUG',   envOrDie('FACEBOOK_SLUG'));
+const FACEBOOK_HANDLE = assertSafe('FACEBOOK_HANDLE', envOrDie('FACEBOOK_HANDLE'));
+const GA_ID           = assertSafe('GA_ID',           envOrDie('GA_ID'));
+const FB_PIXEL_ID     = assertSafe('FB_PIXEL_ID',     envOrDie('FB_PIXEL_ID'));
+const FORMSPREE_ID    = assertSafe('FORMSPREE_ID',    envOrDie('FORMSPREE_ID'));
+
+// --------------- Format validation ---------------
+if (!/^\d{10,15}$/.test(PHONE_NUMBER)) {
+    console.error('❌  PHONE_NUMBER must contain only digits (10-15 chars).');
+    process.exit(1);
+}
+if (!/^G-[A-Z0-9]+$/.test(GA_ID)) {
+    console.error('❌  GA_ID must match format G-XXXXXXXXXX.');
+    process.exit(1);
+}
+if (!/^\d{10,20}$/.test(FB_PIXEL_ID)) {
+    console.error('❌  FB_PIXEL_ID must be a numeric string.');
+    process.exit(1);
+}
+if (!/^[a-zA-Z0-9]{6,20}$/.test(FORMSPREE_ID)) {
+    console.error('❌  FORMSPREE_ID must be alphanumeric.');
+    process.exit(1);
+}
+console.log('  🔒  All environment variables passed security validation.');
 
 // --------------- Derived values ---------------
 const WHATSAPP_URL  = `https://wa.me/${PHONE_NUMBER}?text=${WHATSAPP_MSG}`;
@@ -107,13 +139,18 @@ const runtimeConfig = `
     // Hydrate all [data-ec] elements
     document.addEventListener('DOMContentLoaded',function(){
         document.querySelectorAll('[data-ec-href]').forEach(function(el){
-            el.href=_c[el.getAttribute('data-ec-href')];
+            var key=el.getAttribute('data-ec-href');
+            if(_c.hasOwnProperty(key)){el.href=_c[key];}
         });
         document.querySelectorAll('[data-ec-text]').forEach(function(el){
-            el.textContent=_c[el.getAttribute('data-ec-text')];
+            var key=el.getAttribute('data-ec-text');
+            if(_c.hasOwnProperty(key)){el.textContent=_c[key];}
+        });
+        // Enforce noopener noreferrer on all external links
+        document.querySelectorAll('a[target="_blank"]').forEach(function(el){
+            el.setAttribute('rel','noopener noreferrer');
         });
     });
-    window.__EC=_c;
 })();
 </script>`;
 
