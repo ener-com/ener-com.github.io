@@ -12,7 +12,7 @@
     <link rel="canonical" href="https://ener-com.github.io">
 
     <!-- ==================== SECURITY HEADERS ==================== -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://formspree.io https://analytics.google.com https://region1.google-analytics.com; frame-src https://cal.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://formspree.io https://analytics.google.com https://region1.google-analytics.com https://cdn.tailwindcss.com; frame-src https://cal.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
@@ -1559,8 +1559,8 @@
 
         // ===== SAVINGS CALCULATOR =====
         (function () {
-            const slider = document.getElementById('calc-bill');
-            const input = document.getElementById('calc-bill-input');
+            const slider = document.getElementById('calc-slider');
+            const input = document.getElementById('calc-cfe');
             const resultSection = document.getElementById('calc-results');
             if (!slider || !input) return;
 
@@ -1593,41 +1593,56 @@
                     lifetimeSaving += annualSaving * Math.pow(1 + ANNUAL_INCREASE, y);
                 }
 
-                return { monthlySaving, investment, paybackYears, numPanels, lifetimeSaving: Math.round(lifetimeSaving), systemKw: systemKw.toFixed(1) };
+                return { monthlySaving, investment, paybackYears, numPanels, lifetimeSaving: Math.round(lifetimeSaving), systemKw: systemKw.toFixed(1), annualSaving };
             }
 
             function updateResults() {
-                const bill = parseInt(slider.value);
-                input.value = bill;
-                slider.value = bill;
+                const val = input.value.replace(/[^0-9]/g, '');
+                const bill = parseInt(val) || parseInt(slider.value) || 2000;
+                input.value = bill.toLocaleString('es-MX');
+                slider.value = Math.max(500, Math.min(15000, bill));
 
                 const r = calculate(bill);
                 const el = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
-                el('result-saving', formatMoney(r.monthlySaving));
-                el('result-investment', formatMoney(r.investment));
-                el('result-payback', r.paybackYears + ' años');
-                el('result-panels', r.numPanels);
-                el('result-lifetime', formatMoney(r.lifetimeSaving));
-                el('result-system', r.systemKw + ' kW');
+                el('calc-saving', formatMoney(r.monthlySaving));
+                el('calc-annual', formatMoney(r.annualSaving));
+                el('calc-roi', '');
+                const roiEl = document.getElementById('calc-roi');
+                if (roiEl) roiEl.innerHTML = r.paybackYears + ' <span class="text-sm font-normal">años</span>';
+                el('calc-panels', r.numPanels);
+                el('calc-lifetime', formatMoney(r.lifetimeSaving));
+
+                // Update before/after amounts
+                const baBeforeEl = document.getElementById('ba-before-amount');
+                const baAfterEl = document.getElementById('ba-after-amount');
+                if (baBeforeEl) baBeforeEl.textContent = formatMoney(bill);
+                if (baAfterEl) baAfterEl.textContent = formatMoney(Math.round(bill * (1 - REDUCTION)));
 
                 resultSection?.classList.remove('hidden');
                 resultSection?.querySelectorAll('.calc-result-card').forEach((c, i) => {
+                    c.classList.remove('hide');
+                    c.classList.add('show');
                     c.style.animation = 'none';
                     c.offsetHeight; // reflow
                     c.style.animation = `fadeInUp 0.4s ease ${i * 0.08}s both`;
                 });
             }
 
-            slider.addEventListener('input', updateResults);
+            slider.addEventListener('input', function() {
+                input.value = parseInt(slider.value).toLocaleString('es-MX');
+                updateResults();
+            });
             input.addEventListener('change', function () {
-                let v = parseInt(this.value) || 500;
+                const val = this.value.replace(/[^0-9]/g, '');
+                let v = parseInt(val) || 500;
                 v = Math.max(500, Math.min(50000, v));
-                slider.value = v;
-                this.value = v;
+                slider.value = Math.max(500, Math.min(15000, v));
+                this.value = v.toLocaleString('es-MX');
                 updateResults();
             });
 
-            document.getElementById('calc-btn')?.addEventListener('click', updateResults);
+            // Auto-calculate on load
+            updateResults();
         })();
 
         // ===== BEFORE / AFTER CFE SLIDER =====
