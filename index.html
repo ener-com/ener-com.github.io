@@ -3,28 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Paneles Solares Enercom | Instalación de Paneles Solares en México</title>
     <meta name="description" content="Enercom: Expertos en instalación de paneles solares para hogares y negocios. Ahorra hasta un 98% en tu recibo de CFE. Consulta gratuita.">
     <meta name="keywords" content="paneles solares, instalación solar, energía solar, CFE, ahorro energético, Enercom, México">
     <meta name="author" content="Enercom">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ener-com.github.io">
+
+    <!-- ==================== SECURITY HEADERS ==================== -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        font-src 'self' https://fonts.gstatic.com;
+        img-src 'self' data: https:;
+        connect-src 'self' https://www.google-analytics.com https://formspree.io https://analytics.google.com https://region1.google-analytics.com;
+        frame-src 'none';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self' https://formspree.io;
+    ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Paneles Solares Enercom">
     <meta property="og:description" content="Transforma tu hogar o negocio en una fuente de energía limpia. Consulta gratuita.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ener-com.github.io">
-    <meta property="og:image" content="logo/logo.jpeg">
+    <meta property="og:image" content="https://ener-com.github.io/logo/logo.jpeg">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:site_name" content="Enercom Paneles Solares">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Paneles Solares Enercom">
+    <meta name="twitter:description" content="Transforma tu hogar o negocio en una fuente de energía limpia. Consulta gratuita.">
+    <meta name="twitter:image" content="https://ener-com.github.io/logo/logo.jpeg">
 
     <!-- Favicon -->
     <link rel="icon" href="logo/logo.jpeg" type="image/jpeg">
 
+    <!-- ==================== STRUCTURED DATA (JSON-LD) ==================== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Enercom Paneles Solares",
+        "description": "Expertos en instalación de paneles solares para hogares y negocios en México. Ahorra hasta un 98% en tu recibo de CFE.",
+        "url": "https://ener-com.github.io",
+        "logo": "https://ener-com.github.io/logo/logo.jpeg",
+        "image": "https://ener-com.github.io/logo/logo.jpeg",
+        "telephone": "__PHONE_INTL__",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Monterrey",
+            "addressRegion": "Nuevo León",
+            "addressCountry": "MX"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "25.6866",
+            "longitude": "-100.3161"
+        },
+        "sameAs": [
+            "__FACEBOOK_URL__"
+        ],
+        "priceRange": "$$",
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+            "opens": "08:00",
+            "closes": "18:00"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "500"
+        }
+    }
+    </script>
+
     <!-- ==================== GOOGLE ANALYTICS 4 ==================== -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-95F4SFNWF8"></script>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=__GA_ID__" crossorigin="anonymous"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-95F4SFNWF8');
+        gtag('config', '__GA_ID__', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=Lax;Secure' });
     </script>
 
     <!-- ==================== META (FACEBOOK) PIXEL ==================== -->
@@ -34,12 +104,12 @@
         n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
         t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
         document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('init', '__FB_PIXEL_ID__');
         fbq('track', 'PageView');
     </script> -->
 
     <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" crossorigin="anonymous"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -165,8 +235,11 @@
 </head>
 <body class="bg-white text-gray-800 antialiased">
 
+    <!-- Skip to content (accessibility) -->
+    <a href="#inicio" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[999] focus:bg-brand-600 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold">Saltar al contenido principal</a>
+
     <!-- ==================== HEADER / NAVBAR ==================== -->
-    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent">
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent" role="banner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <!-- Logo -->
@@ -176,7 +249,7 @@
                 </a>
 
                 <!-- Desktop Nav -->
-                <nav class="hidden lg:flex items-center gap-7">
+                <nav class="hidden lg:flex items-center gap-7" role="navigation" aria-label="Navegación principal">
                     <a href="#inicio" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Inicio</a>
                     <a href="#beneficios" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Beneficios</a>
                     <a href="#servicios" class="nav-link text-sm font-medium text-white/90 hover:text-white transition-colors">Servicios</a>
@@ -188,7 +261,7 @@
 
                 <!-- CTA + Social -->
                 <div class="hidden lg:flex items-center gap-4">
-                    <a href="https://facebook.com/EnerComMonterrey" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-white transition-colors">
+                    <a href="__FACEBOOK_URL__" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-white transition-colors">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
                     <a href="#contacto" class="bg-solar-500 hover:bg-solar-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all hover:shadow-lg hover:shadow-solar-500/30">
@@ -197,7 +270,7 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="lg:hidden text-white p-2" aria-label="Abrir menú">
+                <button id="mobile-menu-btn" class="lg:hidden text-white p-2" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
@@ -216,7 +289,7 @@
                 <a href="#confianza" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Nosotros</a>
                 <a href="#contacto" class="mobile-nav-link block text-white/90 hover:text-white font-medium py-2">Contacto</a>
                 <div class="flex items-center gap-4 pt-4 border-t border-white/10">
-                    <a href="https://facebook.com/EnerComMonterrey" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-white">
+                    <a href="__FACEBOOK_URL__" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-white">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
                     <a href="#contacto" class="flex-1 text-center bg-solar-500 hover:bg-solar-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm transition-all">Consulta Gratuita</a>
@@ -226,6 +299,7 @@
     </header>
 
     <!-- ==================== HERO SECTION ==================== -->
+    <main>
     <section id="inicio" class="hero-gradient relative min-h-screen flex items-center overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
@@ -254,7 +328,7 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
                             Consulta Gratuita
                         </a>
-                        <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:shadow-green-500/30 hover:-translate-y-0.5">
+                        <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:shadow-green-500/30 hover:-translate-y-0.5">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                             Cotizar Ahora
                         </a>
@@ -405,7 +479,7 @@
             </div>
 
             <div class="text-center mt-12 reveal">
-                <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:shadow-green-500/30 hover:-translate-y-0.5">
+                <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all hover:shadow-xl hover:shadow-green-500/30 hover:-translate-y-0.5">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     Cotizar Ahora por WhatsApp
                 </a>
@@ -683,17 +757,17 @@
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">Completa el formulario y un asesor te contactará en menos de 24 horas con una propuesta personalizada.</p>
 
                     <div class="space-y-4 mb-8">
-                        <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow border border-gray-100 group">
+                        <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow border border-gray-100 group">
                             <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                             </div>
-                            <div><div class="font-semibold text-gray-900">WhatsApp</div><div class="text-sm text-gray-500">+52 811 954 8637</div></div>
+                            <div><div class="font-semibold text-gray-900">WhatsApp</div><div class="text-sm text-gray-500">__PHONE_DISPLAY__</div></div>
                         </a>
-                        <a href="https://facebook.com/EnerComMonterrey" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow border border-gray-100 group">
+                        <a href="__FACEBOOK_URL__" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-shadow border border-gray-100 group">
                             <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                             </div>
-                            <div><div class="font-semibold text-gray-900">Facebook</div><div class="text-sm text-gray-500">@EnerComMonterrey</div></div>
+                            <div><div class="font-semibold text-gray-900">Facebook</div><div class="text-sm text-gray-500">__FACEBOOK_HANDLE__</div></div>
                         </a>
                     </div>
 
@@ -714,18 +788,25 @@
                 <div class="reveal">
                     <div class="bg-white rounded-2xl p-8 shadow-xl border border-gray-100">
                         <h3 class="text-xl font-bold text-gray-900 mb-6">Recibe Tu Cotización Gratis</h3>
-                        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-5">
+                        <form id="contact-form" action="__FORMSPREE_URL__" method="POST" class="space-y-5" autocomplete="on" novalidate>
+                            <!-- Honeypot anti-spam (hidden from users) -->
+                            <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden;"><label for="_hp_check">No llenar este campo</label><input type="text" id="_hp_check" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+                            <!-- Timestamp anti-bot -->
+                            <input type="hidden" name="_timestamp" id="form-timestamp" value="">
                             <div>
                                 <label for="nombre" class="block text-sm font-semibold text-gray-700 mb-1.5">Nombre Completo <span class="text-red-500">*</span></label>
-                                <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan García López" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                                <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Ej. Juan García López" minlength="2" maxlength="100" pattern="[A-Za-zÀ-ÿ\s\.\-']+" title="Solo letras, espacios y caracteres válidos" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                                <p class="text-xs text-red-500 mt-1 hidden" id="nombre-error"></p>
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">Correo Electrónico <span class="text-red-500">*</span></label>
-                                <input type="email" id="email" name="email" required placeholder="tu@correo.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                                <input type="email" id="email" name="email" required autocomplete="email" placeholder="tu@correo.com" maxlength="254" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                                <p class="text-xs text-red-500 mt-1 hidden" id="email-error"></p>
                             </div>
                             <div>
                                 <label for="telefono" class="block text-sm font-semibold text-gray-700 mb-1.5">Teléfono <span class="text-red-500">*</span></label>
-                                <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 81 1234 5678" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                                <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="Ej. 81 1234 5678" minlength="10" maxlength="15" pattern="[\d\s\+\-\(\)]+" title="Solo números, espacios, guiones y paréntesis" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors placeholder:text-gray-400 text-gray-900">
+                                <p class="text-xs text-red-500 mt-1 hidden" id="telefono-error"></p>
                             </div>
                             <div>
                                 <label for="gasto_cfe" class="block text-sm font-semibold text-gray-700 mb-1.5">Gasto Promedio Bimestral en CFE <span class="text-red-500">*</span></label>
@@ -738,11 +819,18 @@
                                     <option value="Más de $10,000">Más de $10,000 MXN</option>
                                 </select>
                             </div>
-                            <input type="text" name="_gotcha" style="display:none">
+                            <!-- Aviso de Privacidad / LFPDPPP compliance -->
+                            <div class="flex items-start gap-3">
+                                <input type="checkbox" id="privacy-consent" name="privacy_consent" required class="mt-1 h-4 w-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500">
+                                <label for="privacy-consent" class="text-xs text-gray-600 leading-relaxed">
+                                    Acepto el <a href="#aviso-privacidad" class="text-brand-600 underline hover:text-brand-700 font-semibold" onclick="document.getElementById('privacy-modal').classList.add('active');">Aviso de Privacidad</a> y autorizo el tratamiento de mis datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP). <span class="text-red-500">*</span>
+                                </label>
+                            </div>
                             <button type="submit" id="submit-btn" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-6 rounded-xl transition-all hover:shadow-lg hover:shadow-brand-600/30 hover:-translate-y-0.5 flex items-center justify-center gap-2">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                                 Solicitar Cotización Gratuita
                             </button>
+                            <p class="text-xs text-gray-400 text-center mt-2">🔒 Tus datos están protegidos y no serán compartidos con terceros.</p>
                         </form>
                         <div id="form-success" class="hidden text-center py-8">
                             <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -757,8 +845,10 @@
         </div>
     </section>
 
+    </main>
+
     <!-- ==================== FOOTER ==================== -->
-    <footer class="bg-navy-950 text-white py-12">
+    <footer class="bg-navy-950 text-white py-12" role="contentinfo">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-3 gap-8 items-center">
                 <div>
@@ -780,22 +870,27 @@
                     </nav>
                 </div>
                 <div class="flex justify-center md:justify-end gap-4">
-                    <a href="https://facebook.com/EnerComMonterrey" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-colors">
+                    <a href="__FACEBOOK_URL__" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-colors">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
-                    <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-colors">
+                    <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-colors">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     </a>
                 </div>
             </div>
             <div class="border-t border-white/10 mt-8 pt-8 text-center">
                 <p class="text-gray-500 text-sm">&copy; <span id="year"></span> Paneles Solares Enercom. Todos los derechos reservados.</p>
+                <div class="flex justify-center gap-4 mt-3">
+                    <a href="#" onclick="document.getElementById('privacy-modal').classList.add('active'); return false;" class="text-gray-500 hover:text-white text-xs transition-colors underline">Aviso de Privacidad</a>
+                    <span class="text-gray-700 text-xs">|</span>
+                    <a href="#" onclick="document.getElementById('cookie-banner').classList.remove('hidden'); return false;" class="text-gray-500 hover:text-white text-xs transition-colors underline">Política de Cookies</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- ==================== STICKY WHATSAPP ==================== -->
-    <a href="https://wa.me/528119548637?text=Hola%20Enercom%2C%20me%20interesa%20una%20consulta%20gratuita%20para%20paneles%20solares." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="whatsapp-sticky fixed bottom-6 right-6 z-50 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 group">
+    <a href="__WHATSAPP_URL__" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="whatsapp-sticky fixed bottom-6 right-6 z-50 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 group">
         <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span class="absolute right-20 bg-navy-900 text-white text-sm font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">¿Necesitas ayuda? 💬</span>
     </a>
@@ -814,8 +909,75 @@
         <img id="lightbox-img" src="" alt="" class="relative z-0">
     </div>
 
+    <!-- ==================== PRIVACY MODAL (Aviso de Privacidad) ==================== -->
+    <div id="privacy-modal" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
+        <div class="relative bg-white rounded-2xl max-w-3xl w-full mx-4 max-h-[85vh] overflow-y-auto p-8 z-10 text-gray-800">
+            <button onclick="document.getElementById('privacy-modal').classList.remove('active');" class="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors" aria-label="Cerrar">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <h2 id="privacy-title" class="text-2xl font-extrabold text-gray-900 mb-4">🔒 Aviso de Privacidad</h2>
+            <p class="text-sm text-gray-600 mb-4"><strong>Responsable:</strong> Paneles Solares Enercom, con domicilio en Monterrey, Nuevo León, México.</p>
+            <h3 class="font-bold text-gray-900 mt-4 mb-2">Datos Personales Recabados</h3>
+            <p class="text-sm text-gray-600 mb-3">Para brindar nuestros servicios de consulta y cotización, recabamos los siguientes datos personales: nombre completo, correo electrónico, número telefónico y gasto promedio en CFE.</p>
+            <h3 class="font-bold text-gray-900 mt-4 mb-2">Finalidad del Tratamiento</h3>
+            <p class="text-sm text-gray-600 mb-3">Sus datos personales serán utilizados exclusivamente para: (i) contactarlo y brindarle información sobre nuestros servicios de instalación de paneles solares; (ii) elaborar cotizaciones personalizadas; (iii) dar seguimiento a solicitudes; y (iv) enviar información comercial relevante.</p>
+            <h3 class="font-bold text-gray-900 mt-4 mb-2">Transferencia de Datos</h3>
+            <p class="text-sm text-gray-600 mb-3">No se realizarán transferencias de sus datos personales a terceros sin su consentimiento, salvo las excepciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP).</p>
+            <h3 class="font-bold text-gray-900 mt-4 mb-2">Derechos ARCO</h3>
+            <p class="text-sm text-gray-600 mb-3">Usted tiene derecho a Acceder, Rectificar, Cancelar u Oponerse al tratamiento de sus datos personales (derechos ARCO). Para ejercer estos derechos, puede contactarnos vía WhatsApp al <span class="font-semibold">__PHONE_DISPLAY__</span> o a través de nuestra página de Facebook <span class="font-semibold">__FACEBOOK_HANDLE__</span>.</p>
+            <h3 class="font-bold text-gray-900 mt-4 mb-2">Medidas de Seguridad</h3>
+            <p class="text-sm text-gray-600 mb-3">Implementamos medidas de seguridad administrativas, técnicas y físicas para proteger sus datos personales contra daño, pérdida, alteración, destrucción o acceso no autorizado.</p>
+            <h3 class="font-bold text-gray-900 mt-4 mb-2">Cookies y Tecnologías de Rastreo</h3>
+            <p class="text-sm text-gray-600 mb-3">Este sitio utiliza Google Analytics para analizar el tráfico y mejorar la experiencia del usuario. Las cookies recopilan información de forma anónima. Puede desactivar las cookies desde la configuración de su navegador.</p>
+            <p class="text-sm text-gray-500 mt-6">Última actualización: Marzo 2026.</p>
+            <button onclick="document.getElementById('privacy-modal').classList.remove('active');" class="mt-6 w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-6 rounded-xl transition-all">Entendido</button>
+        </div>
+    </div>
+
+    <!-- ==================== COOKIE CONSENT BANNER ==================== -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[90] bg-navy-950/98 backdrop-blur-lg border-t border-white/10 p-4 sm:p-6 hidden" role="alert" aria-live="polite">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-start gap-3 flex-1">
+                <span class="text-2xl">🍪</span>
+                <p class="text-sm text-gray-300">
+                    Utilizamos cookies propias y de terceros (Google Analytics) para analizar el uso del sitio y mejorar tu experiencia. Al continuar navegando, aceptas su uso conforme a nuestro
+                    <a href="#" onclick="document.getElementById('privacy-modal').classList.add('active'); return false;" class="text-brand-400 underline hover:text-brand-300">Aviso de Privacidad</a>.
+                </p>
+            </div>
+            <div class="flex gap-3 flex-shrink-0">
+                <button onclick="acceptCookies()" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-5 py-2 rounded-full text-sm transition-all">Aceptar</button>
+                <button onclick="rejectCookies()" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-5 py-2 rounded-full text-sm border border-white/20 transition-all">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== JAVASCRIPT ==================== -->
     <script>
+        'use strict';
+
+        // ===== COOKIE CONSENT =====
+        function acceptCookies() {
+            localStorage.setItem('cookie_consent', 'accepted');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+        function rejectCookies() {
+            localStorage.setItem('cookie_consent', 'rejected');
+            document.getElementById('cookie-banner').classList.add('hidden');
+            // Disable Google Analytics if rejected
+            window['ga-disable-__GA_ID__'] = true;
+        }
+        // Show banner if no consent given
+        if (!localStorage.getItem('cookie_consent')) {
+            document.getElementById('cookie-banner').classList.remove('hidden');
+        } else if (localStorage.getItem('cookie_consent') === 'rejected') {
+            window['ga-disable-__GA_ID__'] = true;
+        }
+
+        // ===== PRIVACY MODAL =====
+        document.getElementById('privacy-modal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+
         // ===== MOBILE MENU =====
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -825,12 +987,14 @@
             menuOpen = !menuOpen;
             mobileMenu.classList.toggle('hidden');
             menuIcon.setAttribute('d', menuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16');
+            mobileMenuBtn.setAttribute('aria-expanded', menuOpen);
         });
         document.querySelectorAll('.mobile-nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
                 menuOpen = false;
                 menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             });
         });
 
@@ -925,18 +1089,128 @@
             document.querySelector('.ms-next').addEventListener('click', () => { msScroll.scrollBy({ left: 320, behavior: 'smooth' }); });
         }
 
+        // ===== SECURITY: Input Sanitization =====
+        function sanitizeInput(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
+        }
+
+        function validatePhone(phone) {
+            const digits = phone.replace(/\D/g, '');
+            return digits.length >= 10 && digits.length <= 15;
+        }
+
+        function validateName(name) {
+            return /^[A-Za-zÀ-ÿ\s.\-']{2,100}$/.test(name.trim());
+        }
+
+        function showFieldError(fieldId, message) {
+            const errorEl = document.getElementById(fieldId + '-error');
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.remove('hidden');
+            }
+            const field = document.getElementById(fieldId);
+            if (field) field.classList.add('border-red-500');
+        }
+
+        function clearFieldError(fieldId) {
+            const errorEl = document.getElementById(fieldId + '-error');
+            if (errorEl) {
+                errorEl.textContent = '';
+                errorEl.classList.add('hidden');
+            }
+            const field = document.getElementById(fieldId);
+            if (field) field.classList.remove('border-red-500');
+        }
+
+        // ===== FORM TIMESTAMP (anti-bot) =====
+        document.getElementById('form-timestamp').value = Date.now();
+
+        // ===== RATE LIMITING =====
+        let lastSubmitTime = 0;
+        const SUBMIT_COOLDOWN = 10000; // 10 seconds between submissions
+
         // ===== CONTACT FORM =====
         const form = document.getElementById('contact-form');
         const submitBtn = document.getElementById('submit-btn');
         const formSuccess = document.getElementById('form-success');
+
+        // Clear errors on input
+        ['nombre', 'email', 'telefono'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('input', () => clearFieldError(id));
+        });
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // Rate limiting
+            const now = Date.now();
+            if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
+                alert('Por favor espera unos segundos antes de enviar de nuevo.');
+                return;
+            }
+
+            // Honeypot check
+            if (document.getElementById('_hp_check').value) return;
+
+            // Timestamp check (form filled in less than 2 seconds = likely bot)
+            const formTime = parseInt(document.getElementById('form-timestamp').value, 10);
+            if (now - formTime < 2000) return;
+
+            // Validate inputs
+            let isValid = true;
+            const nombre = document.getElementById('nombre').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const privacyConsent = document.getElementById('privacy-consent').checked;
+
+            if (!validateName(nombre)) {
+                showFieldError('nombre', 'Ingresa un nombre válido (solo letras y espacios, 2-100 caracteres).');
+                isValid = false;
+            }
+
+            if (!validateEmail(email)) {
+                showFieldError('email', 'Ingresa un correo electrónico válido.');
+                isValid = false;
+            }
+
+            if (!validatePhone(telefono)) {
+                showFieldError('telefono', 'Ingresa un teléfono válido (10-15 dígitos).');
+                isValid = false;
+            }
+
+            if (!privacyConsent) {
+                alert('Debes aceptar el Aviso de Privacidad para continuar.');
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            lastSubmitTime = now;
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Enviando...';
+
             try {
-                const r = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+                const formData = new FormData(form);
+                // Sanitize data before sending
+                formData.set('nombre', sanitizeInput(nombre));
+                formData.set('email', sanitizeInput(email));
+                formData.set('telefono', sanitizeInput(telefono));
+
+                const r = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
                 if (r.ok) { form.classList.add('hidden'); formSuccess.classList.remove('hidden'); } else throw new Error();
-            } catch { submitBtn.disabled = false; submitBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Solicitar Cotización Gratuita'; alert('Error al enviar. Intenta de nuevo o contáctanos por WhatsApp.'); }
+            } catch {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg> Solicitar Cotización Gratuita';
+                alert('Error al enviar. Intenta de nuevo o contáctanos por WhatsApp.');
+            }
         });
 
         // ===== FOOTER YEAR =====
@@ -945,8 +1219,10 @@
         // ===== SMOOTH SCROLL =====
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href === '#aviso-privacidad') return;
                 e.preventDefault();
-                const t = document.querySelector(this.getAttribute('href'));
+                const t = document.querySelector(href);
                 if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
             });
         });
