@@ -35,7 +35,16 @@ for (const line of envContent.split('\n')) {
     const eqIdx = trimmed.indexOf('=');
     if (eqIdx === -1) continue;
     const key = trimmed.substring(0, eqIdx).trim();
-    const value = trimmed.substring(eqIdx + 1).trim();
+    let value = trimmed.substring(eqIdx + 1).trim();
+    // Strip surrounding quotes (single or double) if present
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+    }
+    // Reject keys with special characters (prevent env injection)
+    if (!/^[A-Z_][A-Z0-9_]*$/i.test(key)) {
+        console.warn(`⚠️  Skipping invalid env key: ${key}`);
+        continue;
+    }
     process.env[key] = value;
 }
 
