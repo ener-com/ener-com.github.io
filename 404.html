@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página No Encontrada — Enercom</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="logo/logo-icon.webp" type="image/webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand:  { 50:'#eef5ff',100:'#d9e8ff',200:'#bcd8ff',300:'#8ec0ff',400:'#599eff',500:'#3478ff',600:'#1a5af5',700:'#1347e1',800:'#163bb6',900:'#18358f' },
+                        navy:   { 800:'#1a2332',900:'#0f1923',950:'#0a1017' },
+                        solar:  { 400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309' },
+                    },
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .float-animation { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 flex flex-col items-center justify-center px-4 text-center relative overflow-hidden">
+    <!-- Background decorations -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-brand-600/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-solar-500/10 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 max-w-lg">
+        <!-- Logo -->
+        <a href="/" class="inline-block mb-8">
+            <img src="logo/logo-main.webp" alt="Enercom" class="h-12 mx-auto" width="160" height="48">
+        </a>
+
+        <!-- Solar panel illustration -->
+        <div class="float-animation mb-8">
+            <svg class="w-32 h-32 mx-auto text-solar-500 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+        </div>
+
+        <!-- Error text -->
+        <h1 class="text-8xl sm:text-9xl font-extrabold text-white/10 leading-none select-none">404</h1>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mt-4 mb-3">Página No Encontrada</h2>
+        <p class="text-white/60 text-lg mb-8 max-w-md mx-auto">
+            La página que buscas no existe o fue movida. Pero no te preocupes, la energía solar sigue brillando. ☀️
+        </p>
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/" class="inline-flex items-center gap-2 bg-solar-500 hover:bg-solar-600 text-white font-semibold px-8 py-3.5 rounded-full transition-all hover:shadow-lg hover:shadow-solar-500/30 hover:-translate-y-0.5">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                Ir al Inicio
+            </a>
+            <a href="/#contacto" class="inline-flex items-center gap-2 text-white/80 hover:text-white font-medium px-6 py-3.5 rounded-full border border-white/20 hover:border-white/40 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                Contáctanos
+            </a>
+        </div>
+    </div>
+
+    <footer class="absolute bottom-6 text-white/30 text-sm">
+        &copy; <script>document.write(new Date().getFullYear())</script> Enercom — Energía Solar
+    </footer>
+</body>
+</html>
