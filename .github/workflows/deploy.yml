@@ -10,10 +10,13 @@
 #   1. Develop on main
 #   2. Create PR from main → gh-pages
 #   3. Review, merge & close the PR
-#   4. This workflow triggers automatically:
+#   4. The merge creates a push on gh-pages, triggering this workflow:
 #      a. Checks out gh-pages
 #      b. Runs scripts/build.js to inject secrets
 #      c. Deploys dist/ to GitHub Pages
+#
+# IMPORTANT: This workflow file must exist on the gh-pages branch
+# to be triggered. Keep it in sync when merging from main.
 #
 # Also supports manual trigger via workflow_dispatch.
 #
@@ -21,9 +24,8 @@
 name: Build & Deploy
 
 on:
-  pull_request:
+  push:
     branches: [gh-pages]
-    types: [closed]
   workflow_dispatch:
 
 # Sets permissions for GITHUB_TOKEN to deploy to Pages
@@ -39,8 +41,6 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    # Only run when a PR is merged (not just closed) or manually triggered
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
