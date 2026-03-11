@@ -3,25 +3,17 @@
 # ============================================================
 #
 # This workflow:
-#   1. Checks out the repo
+#   1. Triggers when a PR is merged into gh-pages (or manually)
 #   2. Runs scripts/build.js to inject secrets into index.html
 #   3. Deploys the dist/ folder to GitHub Pages
 #
-# Required GitHub Secrets (Settings → Secrets → Actions):
-#   PHONE_NUMBER     – e.g. 521234567890
-#   PHONE_DISPLAY    – e.g. +52 123 456 7890
-#   WHATSAPP_MSG     – URL-encoded message
-#   FACEBOOK_SLUG    – e.g. MyPageName
-#   FACEBOOK_HANDLE  – e.g. @MyPageName
-#   GA_ID            – e.g. G-XXXXXXXXXX
-#   FB_PIXEL_ID      – Facebook Pixel ID
-#   FORMSPREE_ID     – Formspree form hash
 
 name: Build & Deploy
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    branches: [gh-pages]
+    types: [closed]
   workflow_dispatch:
 
 # Sets permissions for GITHUB_TOKEN to deploy to Pages
@@ -37,6 +29,8 @@ concurrency:
 
 jobs:
   build-and-deploy:
+    # Only run when a PR is merged (not just closed) or manually triggered
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
