@@ -964,17 +964,17 @@
                         <svg class="w-5 h-5 text-gray-400 ml-auto group-hover:text-brand-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </button>
 
-                    <!-- Scheduling Modal -->
-                    <div id="schedule-modal" class="fixed inset-0 z-40 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true">
-                        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden relative">
+                    <!-- Scheduling Inline Panel -->
+                    <div id="schedule-modal" class="hidden mb-8 transition-all duration-300" aria-hidden="true">
+                        <div class="bg-white rounded-2xl shadow-2xl w-full overflow-hidden border border-gray-100">
                             <div class="flex items-center justify-between bg-brand-600 px-6 py-4 text-white">
                                 <h3 class="text-lg font-bold" data-i18n="schedule_modal_title">Agendar Visita Técnica</h3>
                                 <button id="schedule-close" class="text-white/80 hover:text-white transition-colors" aria-label="Cerrar">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                                 </button>
                             </div>
-                            <div class="p-6">
-                                <iframe id="calcom-iframe" data-src="__CALCOM_URL__" class="w-full rounded-lg border-0" style="height:500px;" title="Agendar cita" loading="lazy" allow="payment"></iframe>
+                            <div class="p-4">
+                                <iframe id="calcom-iframe" data-src="__CALCOM_URL__" class="w-full rounded-lg border-0" style="height:550px;" title="Agendar cita" loading="lazy" allow="payment"></iframe>
                                 <noscript><p class="text-center text-gray-600 py-8">Para agendar tu visita, activa JavaScript o contáctanos por WhatsApp.</p></noscript>
                             </div>
                         </div>
@@ -1706,33 +1706,33 @@
             }
         })();
 
-        // ===== SCHEDULING MODAL =====
+        // ===== SCHEDULING PANEL =====
         (function () {
             const btn = document.getElementById('schedule-btn');
-            const modal = document.getElementById('schedule-modal');
+            const panel = document.getElementById('schedule-modal');
             const closeBtn = document.getElementById('schedule-close');
             const iframe = document.getElementById('calcom-iframe');
-            if (!btn || !modal) return;
+            if (!btn || !panel) return;
 
-            function openModal() {
+            function openPanel() {
                 // Lazy-load iframe
                 if (iframe && !iframe.src && iframe.dataset.src) {
                     iframe.src = iframe.dataset.src;
                 }
-                modal.classList.remove('pointer-events-none', 'opacity-0');
-                modal.classList.add('pointer-events-auto', 'opacity-100');
-                modal.setAttribute('aria-hidden', 'false');
+                panel.classList.remove('hidden');
+                panel.setAttribute('aria-hidden', 'false');
+                btn.classList.add('hidden');
+                panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            function closeModal() {
-                modal.classList.remove('pointer-events-auto', 'opacity-100');
-                modal.classList.add('pointer-events-none', 'opacity-0');
-                modal.setAttribute('aria-hidden', 'true');
+            function closePanel() {
+                panel.classList.add('hidden');
+                panel.setAttribute('aria-hidden', 'true');
+                btn.classList.remove('hidden');
             }
 
-            btn.addEventListener('click', openModal);
-            closeBtn?.addEventListener('click', closeModal);
-            modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-            document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.classList.contains('opacity-0')) closeModal(); });
+            btn.addEventListener('click', openPanel);
+            closeBtn?.addEventListener('click', closePanel);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.classList.contains('hidden')) closePanel(); });
         })();
 
         // ===== LANGUAGE TOGGLE (i18n) =====
