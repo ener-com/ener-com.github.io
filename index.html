@@ -12,12 +12,16 @@
     <link rel="canonical" href="https://ener-com.github.io">
 
     <!-- ==================== SECURITY HEADERS ==================== -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://formspree.io https://analytics.google.com https://region1.google-analytics.com https://cdn.tailwindcss.com; frame-src https://cal.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
+    <!--
+        NOTE: Content-Security-Policy is intentionally NOT set via <meta> tag.
+        The Tailwind CSS Play CDN requires broad JS permissions (unsafe-eval,
+        dynamic style injection, module loading) that conflict with strict
+        inline CSP. For production, enforce CSP via HTTP response headers
+        on your hosting platform instead.
+    -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), accelerometer=(), gyroscope=(), magnetometer=(), usb=()">
 
     <!-- Open Graph -->
     <meta property="og:title" content="Paneles Solares Enercom">
