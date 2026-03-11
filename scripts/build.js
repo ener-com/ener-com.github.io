@@ -25,6 +25,9 @@
  *   GA_ID              – e.g. G-XXXXXXXXXX
  *   FB_PIXEL_ID        – Facebook Pixel ID
  *   FORMSPREE_ID       – Formspree form ID (just the hash)
+ *
+ * Optional env vars:
+ *   CALCOM_URL         – Cal.com scheduling URL (defaults to https://cal.com)
  */
 
 const fs = require('fs');
@@ -66,6 +69,7 @@ const FACEBOOK_HANDLE = assertSafe('FACEBOOK_HANDLE', envOrDie('FACEBOOK_HANDLE'
 const GA_ID           = assertSafe('GA_ID',           envOrDie('GA_ID'));
 const FB_PIXEL_ID     = assertSafe('FB_PIXEL_ID',     envOrDie('FB_PIXEL_ID'));
 const FORMSPREE_ID    = assertSafe('FORMSPREE_ID',    envOrDie('FORMSPREE_ID'));
+const CALCOM_URL      = assertSafe('CALCOM_URL',      process.env.CALCOM_URL || 'https://cal.com');
 
 // --------------- Format validation ---------------
 if (!/^\d{10,15}$/.test(PHONE_NUMBER)) {
@@ -103,6 +107,7 @@ const replacements = {
     '__PHONE_INTL__'   : PHONE_INTL,
     '__PHONE_DISPLAY__': PHONE_DISPLAY,
     '__FACEBOOK_HANDLE__': FACEBOOK_HANDLE,
+    '__CALCOM_URL__'   : CALCOM_URL,
 };
 
 // --------------- Build ---------------
@@ -169,6 +174,16 @@ for (const dir of assetDirs) {
     if (fs.existsSync(srcDir)) {
         copyDirSync(srcDir, destDir);
         console.log(`  📁  Copied ${dir}/`);
+    }
+}
+
+// Copy root-level files to dist
+const rootFiles = ['404.html', 'manifest.json', 'sitemap.xml', 'robots.txt'];
+for (const file of rootFiles) {
+    const srcFile = path.resolve(__dirname, '..', file);
+    if (fs.existsSync(srcFile)) {
+        fs.copyFileSync(srcFile, path.join(DIST, file));
+        console.log(`  📄  Copied ${file}`);
     }
 }
 
