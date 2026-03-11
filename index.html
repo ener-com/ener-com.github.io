@@ -217,11 +217,39 @@
         /* Filter buttons */
         .filter-btn { transition: all 0.3s ease; }
         .filter-btn.active { background: #23725d; color: white; }
+        .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
 
         /* MS carousel */
-        .ms-scroll { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .ms-scroll { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .ms-scroll::-webkit-scrollbar { display: none; }
-        .ms-card { scroll-snap-align: center; }
+        .ms-card { scroll-snap-align: center; transition: transform 0.3s ease, opacity 0.3s ease; }
+
+        /* MS dot indicators */
+        .ms-dots { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
+        .ms-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; padding: 0; cursor: pointer; transition: all 0.3s ease; }
+        .ms-dot.active { background: #f59e0b; width: 24px; border-radius: 4px; }
+
+        /* Gallery mobile hint */
+        @media (max-width: 767px) {
+            .gallery-item { position: relative; }
+            .gallery-item::after {
+                content: '';
+                position: absolute; inset: 0;
+                background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 40%);
+                pointer-events: none; opacity: 1;
+                transition: opacity 0.3s ease;
+                border-radius: 1rem;
+            }
+            .gallery-item:first-child::before {
+                content: '👆 Toca para ampliar';
+                position: absolute; bottom: 8px; left: 0; right: 0;
+                text-align: center; color: white; font-size: 0.7rem;
+                font-weight: 600; z-index: 2; pointer-events: none;
+                animation: pulse-hint 2s ease-in-out 3;
+            }
+            @keyframes pulse-hint { 0%,100% { opacity: 0.7; } 50% { opacity: 1; } }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-800 antialiased">
@@ -493,15 +521,15 @@
             </div>
 
             <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-3 mb-10 reveal">
-                <button class="filter-btn active bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-semibold" data-filter="all">Todos</button>
-                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold" data-filter="p1">Proyecto 1</button>
-                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold" data-filter="p2">Proyecto 2</button>
-                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold" data-filter="p3">Proyecto 3</button>
-                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold" data-filter="p4">Proyecto 4</button>
-                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold" data-filter="p5">Proyecto 5</button>
-                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold" data-filter="p6">Proyecto 6</button>
-                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold" data-filter="p7">Proyecto 7</button>
+            <div class="flex overflow-x-auto sm:flex-wrap sm:justify-center gap-3 mb-10 reveal pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-hide">
+                <button class="filter-btn active bg-brand-600 text-white px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0" data-filter="all">Todos</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0" data-filter="p1">Proyecto 1</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0" data-filter="p2">Proyecto 2</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0" data-filter="p3">Proyecto 3</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0" data-filter="p4">Proyecto 4</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0" data-filter="p5">Proyecto 5</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0" data-filter="p6">Proyecto 6</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-semibold whitespace-nowrap snap-start flex-shrink-0" data-filter="p7">Proyecto 7</button>
             </div>
 
             <!-- Gallery Grid -->
@@ -544,13 +572,17 @@
             </div>
 
             <div class="text-center mt-8">
-                <p class="text-sm text-gray-500 reveal">Haz clic en cualquier imagen para verla en pantalla completa</p>
+                <p class="text-sm text-gray-500 reveal hidden sm:block">Haz clic en cualquier imagen para verla en pantalla completa</p>
+                <p class="text-sm text-gray-500 reveal sm:hidden flex items-center justify-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
+                    Toca cualquier imagen para ampliarla
+                </p>
             </div>
         </div>
     </section>
 
     <!-- ==================== MANAGEMENT SYSTEM / MONITORING ==================== -->
-    <section id="monitoreo" class="py-20 lg:py-28 dark-section text-white overflow-hidden">
+    <section id="monitoreo" class="py-20 lg:py-28 dark-section text-white overflow-x-clip overflow-y-visible">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <!-- Text -->
@@ -608,37 +640,41 @@
 
                 <!-- Screenshots Carousel -->
                 <div class="reveal">
-                    <div class="ms-scroll flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory items-center">
+                    <div class="ms-scroll flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory items-center -mx-4 px-4 sm:mx-0 sm:px-0">
                         <!-- ms.jpeg - horizontal -->
-                        <div class="ms-card flex-shrink-0 w-80 sm:w-96 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
+                        <div class="ms-card flex-shrink-0 w-[75vw] sm:w-80 md:w-96 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
                             <img src="management_system/ms.jpeg" alt="Sistema de gestión - Panel principal" class="w-full h-auto" loading="lazy">
                         </div>
                         <!-- ms_1.jpeg - vertical -->
-                        <div class="ms-card flex-shrink-0 w-52 sm:w-60 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
+                        <div class="ms-card flex-shrink-0 w-[50vw] sm:w-52 md:w-60 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
                             <img src="management_system/ms_1.jpeg" alt="Sistema de gestión - Producción" class="w-full h-auto" loading="lazy">
                         </div>
                         <!-- ms_2.jpeg - horizontal -->
-                        <div class="ms-card flex-shrink-0 w-80 sm:w-96 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
+                        <div class="ms-card flex-shrink-0 w-[75vw] sm:w-80 md:w-96 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
                             <img src="management_system/ms_2.jpeg" alt="Sistema de gestión - Consumo" class="w-full h-auto" loading="lazy">
                         </div>
                         <!-- ms_3.jpeg - vertical -->
-                        <div class="ms-card flex-shrink-0 w-52 sm:w-60 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
+                        <div class="ms-card flex-shrink-0 w-[50vw] sm:w-52 md:w-60 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
                             <img src="management_system/ms_3.jpeg" alt="Sistema de gestión - Alertas" class="w-full h-auto" loading="lazy">
                         </div>
                         <!-- ms_4.jpeg - vertical -->
-                        <div class="ms-card flex-shrink-0 w-52 sm:w-60 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
+                        <div class="ms-card flex-shrink-0 w-[50vw] sm:w-52 md:w-60 rounded-2xl overflow-hidden shadow-2xl shadow-black/30 border border-white/10 snap-center">
                             <img src="management_system/ms_4.jpeg" alt="Sistema de gestión - Historial" class="w-full h-auto" loading="lazy">
                         </div>
                     </div>
-                    <div class="flex justify-center gap-2 mt-6">
-                        <button class="ms-prev w-10 h-10 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center transition-colors">
+                    <!-- Dot indicators -->
+                    <div class="ms-dots mt-4" aria-label="Indicadores de imagen"></div>
+                    <!-- Controls -->
+                    <div class="flex justify-center gap-2 mt-4">
+                        <button class="ms-prev w-10 h-10 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center transition-colors" aria-label="Imagen anterior">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                         </button>
-                        <button class="ms-next w-10 h-10 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center transition-colors">
+                        <button class="ms-next w-10 h-10 bg-white/10 hover:bg-white/20 border border-white/20 rounded-full flex items-center justify-center transition-colors" aria-label="Imagen siguiente">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                         </button>
-                        <span class="text-sm text-brand-300/60 ml-3 flex items-center">Desliza para ver más →</span>
+                        <span class="text-sm text-brand-300/60 ml-3 flex items-center sm:inline hidden">Desliza para ver más →</span>
                     </div>
+                    <p class="text-center text-xs text-brand-300/50 mt-2 sm:hidden">← Desliza para ver más →</p>
                 </div>
             </div>
         </div>
@@ -1100,11 +1136,69 @@
             if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbImages.length; lbImg.src = lbImages[lbIndex]; }
         });
 
+        // Lightbox touch swipe support
+        let lbTouchStartX = 0, lbTouchEndX = 0;
+        lightbox.addEventListener('touchstart', (e) => { lbTouchStartX = e.changedTouches[0].screenX; }, { passive: true });
+        lightbox.addEventListener('touchend', (e) => {
+            lbTouchEndX = e.changedTouches[0].screenX;
+            const diff = lbTouchStartX - lbTouchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) { lbIndex = (lbIndex + 1) % lbImages.length; }
+                else { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; }
+                lbImg.src = lbImages[lbIndex];
+            }
+        }, { passive: true });
+
         // ===== MANAGEMENT SYSTEM CAROUSEL =====
         const msScroll = document.querySelector('.ms-scroll');
         if (msScroll) {
-            document.querySelector('.ms-prev').addEventListener('click', () => { msScroll.scrollBy({ left: -320, behavior: 'smooth' }); });
-            document.querySelector('.ms-next').addEventListener('click', () => { msScroll.scrollBy({ left: 320, behavior: 'smooth' }); });
+            const msCards = msScroll.querySelectorAll('.ms-card');
+            const msDots = document.querySelector('.ms-dots');
+            const msPrev = document.querySelector('.ms-prev');
+            const msNext = document.querySelector('.ms-next');
+
+            // Create dot indicators
+            msCards.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'ms-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Imagen ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    msCards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                });
+                msDots.appendChild(dot);
+            });
+            const dots = msDots.querySelectorAll('.ms-dot');
+
+            // Track which card is most visible
+            function updateActiveDot() {
+                const scrollCenter = msScroll.scrollLeft + msScroll.clientWidth / 2;
+                let closest = 0;
+                let minDist = Infinity;
+                msCards.forEach((card, i) => {
+                    const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+                    const dist = Math.abs(scrollCenter - cardCenter);
+                    if (dist < minDist) { minDist = dist; closest = i; }
+                });
+                dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+            }
+
+            let scrollTimer;
+            msScroll.addEventListener('scroll', () => {
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(updateActiveDot, 80);
+            }, { passive: true });
+
+            // Button navigation - scroll one card at a time
+            msPrev.addEventListener('click', () => {
+                const activeDotIdx = Array.from(dots).findIndex(d => d.classList.contains('active'));
+                const target = Math.max(0, activeDotIdx - 1);
+                msCards[target].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
+            msNext.addEventListener('click', () => {
+                const activeDotIdx = Array.from(dots).findIndex(d => d.classList.contains('active'));
+                const target = Math.min(msCards.length - 1, activeDotIdx + 1);
+                msCards[target].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            });
         }
 
         // ===== SECURITY: Input Sanitization =====
