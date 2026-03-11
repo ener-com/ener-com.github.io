@@ -9,14 +9,14 @@
     "orientation": "portrait-primary",
     "icons": [
         {
-            "src": "logo/logo-icon.webp",
+            "src": "logo/logo.jpeg",
             "sizes": "192x192",
-            "type": "image/webp"
+            "type": "image/jpeg"
         },
         {
-            "src": "logo/logo-icon.webp",
+            "src": "logo/logo.jpeg",
             "sizes": "512x512",
-            "type": "image/webp"
+            "type": "image/jpeg"
         }
     ],
     "lang": "es",
